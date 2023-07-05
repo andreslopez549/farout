@@ -9,8 +9,8 @@ module.exports = {
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-button': 'linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, white 80%)'
       },
       colors: {
         black_light: "#222222"

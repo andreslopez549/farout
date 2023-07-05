@@ -8,8 +8,8 @@ export default function HeaderGenderList() {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-full justify-center items-center rounded-md bg-white hover:bg-zinc-200 py-2 text-sm font-medium text-[#222222] hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-          Women
+        <Menu.Button className="inline-flex w-full justify-center items-center rounded-md bg-white hover:bg-zinc-200 py-2 text-sm font-bold text-[#222222] hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+          Men
           <ChevronDownIcon className="ml-1 h-6 w-6 text-black hover:text-violet-500" aria-hidden="true" />
         </Menu.Button>
       </div>

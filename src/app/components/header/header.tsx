@@ -7,6 +7,7 @@ import SiteLogo from "@/assets/icons/logo.svg";
 import HeaderGenderList from "./headerGenderList";
 import SubHeader from "./subheader";
 import Link from "next/link";
+import { UserGenre } from "@/data/header";
 
 const Header = () => {
   return (
@@ -14,22 +15,15 @@ const Header = () => {
       <div className="w-full h-[68px] flex flex-row justify-between items-center">
         {/* HEADER TOP LEFT */}
         <div className="hidden md:flex md:flex-1">
-          <div className="text-base px-[12px] py-[10px] hover:bg-zinc-100 rounded-l-md">
-            <Link href="#">Women</Link>
-          </div>
-          <div className="text-base px-[12px] py-[10px] hover:bg-zinc-100">
-            <Link href="#">Men</Link>
-          </div>
-          <div className="text-base px-[12px] py-[10px] hover:bg-zinc-100">
-            <Link href="#">Kids</Link>
-          </div>
-          <div className="text-base px-[12px] py-[10px] hover:bg-zinc-100 rounded-r-md">
-            <Link href="#">Beauty</Link>
-          </div>
+          {UserGenre.map((el) => (
+            <div className="text-base px-[12px] py-[10px] hover:bg-zinc-100 rounded-l-md">
+              <Link href={el.href}>{el.name}</Link>
+            </div>
+          ))}
         </div>
 
         <div className="flex-1 md:hidden">
-          <HeaderGenderList />
+          <HeaderGenderList UserGenre={UserGenre} />
         </div>
 
         {/* SITE LOGO */}

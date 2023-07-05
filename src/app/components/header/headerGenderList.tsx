@@ -3,8 +3,10 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { NavLinkI } from "@/data/header";
+import Link from "next/link";
 
-export default function HeaderGenderList() {
+export default function HeaderGenderList({ UserGenre }: { UserGenre: NavLinkI[] }) {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -24,58 +26,21 @@ export default function HeaderGenderList() {
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="absolute left-0 mt-2 w-32 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="py-1">
-            <Menu.Item>
-              {({ active }) => (
-                <button
-                  className={`${
-                    active ? "bg-zinc-100 text-[#222222]" : "text-gray-900"
-                  } group flex justify-between w-full items-center px-4 py-2 text-sm`}
-                >
-                  Women
-                </button>
-              )}
-            </Menu.Item>
-          </div>
-          <div className="py-1">
-            <Menu.Item>
-              {({ active }) => (
-                <button
-                  className={`${
-                    active ? "bg-zinc-100 text-[#222222]" : "text-gray-900"
-                  } group flex justify-between w-full items-center px-4 py-2 text-sm`}
-                >
-                  Men
-                </button>
-              )}
-            </Menu.Item>
-          </div>
-          <div className="py-1">
-            <Menu.Item>
-              {({ active }) => (
-                <button
-                  className={`${
-                    active ? "bg-zinc-100 text-[#222222]" : "text-gray-900"
-                  } group flex justify-between w-full items-center px-4 py-2 text-sm`}
-                >
-                  Kids
-                </button>
-              )}
-            </Menu.Item>
-          </div>
-          <div className="py-1">
-            <Menu.Item>
-              {({ active }) => (
-                <button
-                  className={`${
-                    active ? "bg-zinc-100 text-[#222222]" : "text-gray-900"
-                  } group flex justify-between w-full items-center px-4 py-2 text-sm`}
-                >
-                  Beauty
-                </button>
-              )}
-            </Menu.Item>
-          </div>
+          {UserGenre.map((el) => (
+            <div className="py-1">
+              <Menu.Item>
+                {({ active }) => (
+                  <div
+                    className={`${
+                      active ? "bg-zinc-100 text-[#222222]" : "text-gray-900"
+                    } group flex justify-between w-full items-center px-4 py-2 text-sm`}
+                  >
+                    <Link href={el.href}>{el.name}</Link>
+                  </div>
+                )}
+              </Menu.Item>
+            </div>
+          ))}
         </Menu.Items>
       </Transition>
     </Menu>

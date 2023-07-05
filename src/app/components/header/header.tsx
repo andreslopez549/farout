@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
+import React from "react";
 import Image from "next/image";
-import { HiOutlineShoppingBag, HiOutlineHeart, HiOutlineUser } from "react-icons/hi";
 import { CiSearch } from "react-icons/ci";
+import { HiOutlineShoppingBag, HiOutlineHeart, HiOutlineUser } from "react-icons/hi";
 
-import ListDD from "./ListDD";
 import SiteLogo from "@/assets/icons/logo.svg";
+import HeaderGenderList from "./headerGenderList";
 import SubHeader from "./subheader";
 
 const Header = () => {
@@ -19,7 +19,7 @@ const Header = () => {
         </div>
 
         <div className="flex-1 md:hidden">
-          <ListDD />
+          <HeaderGenderList />
         </div>
 
         <div className="flex flex-1 justify-center">

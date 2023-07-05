@@ -1,6 +1,6 @@
 export interface NavLinkI {
     name: string
-    href: "#"
+    href: string
 }
 
 export const NavLinks: NavLinkI[] = [

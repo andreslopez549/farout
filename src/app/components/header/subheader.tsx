@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react";
 
 const SubHeader = () => {
   const myDivRef = useRef<HTMLDivElement>(null);
-
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
 

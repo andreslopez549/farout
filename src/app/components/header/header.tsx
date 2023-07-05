@@ -10,6 +10,8 @@ import Link from "next/link";
 import { UserGenre } from "@/data/header";
 
 const Header = () => {
+  const smallRoundedContainers = "p-3 hover:bg-zinc-100 rounded-lg";
+
   return (
     <div className="w-full py-1 md:py-3">
       <div className="w-full h-[68px] flex flex-row justify-between items-center">
@@ -33,15 +35,23 @@ const Header = () => {
 
         {/* HEADER TOP RIGHT */}
         <div className="flex flex-1 justify-end">
-          <div className="p-3 hover:bg-zinc-100 rounded-lg cursor-pointer">🇺🇸</div>
-          <div className="p-3 hover:bg-zinc-100 rounded-lg cursor-pointer">
-            <HiOutlineUser size={20} />
+          <div className={smallRoundedContainers}>
+            <Link href="#">🇺🇸</Link>
           </div>
-          <div className="p-3 hover:bg-zinc-100 rounded-lg cursor-pointer">
-            <HiOutlineHeart size={20} />
+          <div className={smallRoundedContainers}>
+            <Link href="#">
+              <HiOutlineUser size={20} />
+            </Link>
           </div>
-          <div className="p-3 hover:bg-zinc-100 rounded-lg cursor-pointer">
-            <HiOutlineShoppingBag size={20} />
+          <div className={smallRoundedContainers}>
+            <Link href="#">
+              <HiOutlineHeart size={20} />
+            </Link>
+          </div>
+          <div className={smallRoundedContainers}>
+            <Link href="#">
+              <HiOutlineShoppingBag size={20} />
+            </Link>
           </div>
         </div>
       </div>

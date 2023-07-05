@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import { HiOutlineShoppingBag, HiOutlineHeart, HiOutlineUser } from "react-icons/hi";
+import { CiSearch } from "react-icons/ci";
 
 import ListDD from "./ListDD";
-import SiteLogo from  "@/assets/icons/logo.svg"
-import { NavLinks } from "@/data/header";
+import SiteLogo from "@/assets/icons/logo.svg";
+import SubHeader from "./subheader";
 
 const Header = () => {
-
   return (
     <div className="w-full py-1 md:py-3">
       <div className="w-full h-[68px] flex flex-row justify-between items-center">
@@ -40,10 +40,13 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="w-full h-[44px] flex flex-row border">
-        {NavLinks.map(item => (
-          <div className="px-[12px] py-[10px] cursor-pointer">{item.name}</div>
-        ))}
+      <div className="w-full h-[44px] flex flex-row justify-between gap-4">
+        <SubHeader />
+
+        <div className="shrink w-[270px] flex flex-row items-center border border-black px-3 rounded-md">
+          <CiSearch size={25} color={"gray"} className="mr-2" />
+          <input placeholder="Search" className="text-black w-full outline-none" />
+        </div>
       </div>
     </div>
   );

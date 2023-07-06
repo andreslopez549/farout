@@ -4,10 +4,10 @@ import { SupportInfoData } from "@/data/Women";
 import { ProductsData, TrendingProducts } from "@/data/products";
 
 // components
-import Get10PercentOff from "@/app/components/Get10PercentOff/Get10PercentOff";
-import SupportInfoCard from "@/app/components/Cards/supportInfoCard/supportInfoCard";
-import ProductCard from "@/app/components/Cards/ProductCard/productCard";
-import Button from "@/app/components/general/button/button";
+import Get10PercentOff from "@/components/get10PercentOff/Get10PercentOff";
+import SupportInfoCard from "@/components/cards/supportInfoCard/supportInfoCard";
+import ProductCard from "@/components/cards/ProductCard/productCard";
+import Button from "@/components/general/button/button";
 
 // images
 import WomenImage from "../../../../public/womenImage.jpeg";

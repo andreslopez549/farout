@@ -29,7 +29,7 @@ const Header = () => {
         <div className="hidden md:flex md:flex-1">
           {UserGenre.map((el, index) => (
             <Link href={el.href}>
-              <div className={`text-base px-[12px] py-[10px] hover:bg-zinc-100 ${index === 0 && 'rounded-l-md'} ${index === 3 && 'rounded-r-md'} ${isLinkActive(el.href) && "font-semibold"}`} key={index}>
+              <div className={`text-base px-3 py-[10px] hover:bg-zinc-100 ${index === 0 && 'rounded-l-md'} ${index === 3 && 'rounded-r-md'} ${isLinkActive(el.href) && "font-semibold"}`} key={index}>
                 {el.name}
               </div>
             </Link>

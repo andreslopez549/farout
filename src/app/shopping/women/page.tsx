@@ -11,7 +11,11 @@ import RandomProduct from "../../../../public/randomProduct.png";
 
 import { ProductsData, TrendingProducts } from "@/data/products";
 
-import Checkbox from "@/app/components/general/checkbox/checkbox";
+// components
+import Get10PercentOff from "@/app/components/Get10PercentOff/Get10PercentOff";
+import { SupportInfoData } from "@/data/Women";
+import SupportInfoCard from "@/app/components/Cards/supportInfoCard/supportInfoCard";
+import ProductCard from "@/app/components/Cards/ProductCard/productCard";
 
 const WomenPage = () => {
   const sectionClass = "flex max-w-[1440px] flex-col items-center justify-between px-[16px] md:px-[48px] mx-auto";
@@ -74,7 +78,7 @@ const WomenPage = () => {
         Shop Now
       </button>
 
-      <div className="w-full pb-10">
+      <div className="w-full pb-10 lg:px-[48px]">
         <div className="w-full text-left md:text-center text-[28px] my-6 mx-0">Trending this week</div>
         <div className="w-full flex flex-row gap-6 overflow-y-hidden hide-scrollbar overflow-x-auto">
           {TrendingProducts.map((el) => (
@@ -95,23 +99,8 @@ const WomenPage = () => {
         </button>
       </div>
       <div className="w-full pb-10 lg:px-[48px] flex flex-row gap-12 overflow-y-hidden hide-scrollbar overflow-x-auto">
-        {ProductsData.map((el) => (
-          <div className="w-2/3 flex-none sm:w-1/4 sm:flex-1 relative -z-10" key={el.id}>
-            <div className="absolute top-2 right-3">
-              <HiOutlineHeart size={22} />
-            </div>
-
-            <div className="flex justify-center mt-4">
-              <Image src={el.image} className="w-56 object-cover" alt="product-image" />
-            </div>
-
-            <div className="mt-3">
-              <div className="text-[#727272]">New Season</div>
-              <div className="text-black font-semibold">{el.name}</div>
-              <div className="h-12 overflow-hidden">{el.description}</div>
-              <div>${el.price}</div>
-            </div>
-          </div>
+        {ProductsData.map((item) => (
+          <ProductCard item={item} />
         ))}
       </div>
       <button className="w-full h-[44px] sm:hidden md:hidden text-[#222222] font-semibold border border-black rounded-lg hover:bg-zinc-100">
@@ -134,61 +123,15 @@ const WomenPage = () => {
         </div>
       </div>
 
-      <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 my-12">
-        <Link href={"/how-to-shop"} className="flex w-full">
-          <div className="w-full border px-6 py-6 mt-4 md:mt-0 hover:bg-zinc-100">
-            <div className="pb-3">
-              <BiShoppingBag size={22} />
-            </div>
-            <div className="font-normal pb-3">HOW TO SHOP</div>
-            <div className="text-sm">Your guide to shopping and placing orders</div>
-          </div>
-        </Link>
-
-        <Link href={"/faqs"} className="flex w-full">
-          <div className="w-full border px-6 py-6 mt-4 md:mt-0 hover:bg-zinc-100">
-            <div className="pb-3">
-              <BsQuestionCircle size={22} />
-            </div>
-            <div className="font-normal pb-3">FAQs</div>
-            <div className="text-sm">Your questions answered</div>
-          </div>
-        </Link>
-
-        <Link href={"/contact-us"} className="flex w-full">
-          <div className="w-full border px-6 py-6 mt-4 md:mt-0 hover:bg-zinc-100">
-            <div className="pb-3">
-              <BiComment size={22} />
-            </div>
-            <div className="font-normal pb-3">NEED HELP?</div>
-            <div className="text-sm">Contact our global Customer Service team</div>
-          </div>
-        </Link>
+      <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 my-12 lg:px-[48px]">
+        {SupportInfoData.map((item) => (
+          <SupportInfoCard {...item} />
+        ))}
       </div>
 
+      {/* GET 10 Percent Off Section */}
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 mb-10">
-        <div className="w-full">
-          <div className="font-bold text-2xl mb-3">GET 10% OFF YOUR FIRST ORDER</div>
-          <div className="font-normal text-md">Sign up for promotions, tailored new arrivals, stock updates and more – straight to your inbox</div>
-        </div>
-        <div className="w-full">
-          <div className="font-base uppercase mb-3">GET UPDATES BY</div>
-
-          <Checkbox label="Email" />
-          <input placeholder="Your email address" className="w-full md:w-1/2 px-4 py-2 border border-black rounded-md text-md mt-4 mb-4" />
-
-          <Checkbox label="SMS" />
-          <input placeholder="Your phone number" className="w-full md:w-1/2 px-4 py-2 border border-black rounded-md text-md mt-4 " />
-
-          <button className="w-[95px] h-[44px] flex justify-center items-center text-white font-semibold rounded-lg bg-black hover:bg-zinc-500 mt-4">
-            Sign Up
-          </button>
-
-          <div className="font-normal text-md mt-4">
-            By signing up, you consent to receiving marketing by email and/or SMS and acknowledge you have read our <span className="underline">Privacy Policy</span>. Unsubscribe
-            anytime at the bottom of our emails or by replying STOP to any of our SMS.
-          </div>
-        </div>
+        <Get10PercentOff />
       </div>
     </div>
   );

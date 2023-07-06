@@ -4,10 +4,10 @@ import { SupportInfoData } from "@/data/Women";
 import { ProductsData, TrendingProducts } from "@/data/products";
 
 // components
-import Get10PercentOff from "@/components/cards/get10PercentOff/Get10PercentOff";
-import SupportInfoCard from "@/components/cards/supportInfoCard/supportInfoCard";
+import Button from "@/components/common/button/button";
 import ProductCard from "@/components/cards/ProductCard/productCard";
-import Button from "@/components/general/button/button";
+import SupportInfoCard from "@/components/cards/supportInfoCard/supportInfoCard";
+import Get10PercentOff from "@/components/mics/get10PercentOff/Get10PercentOff";
 
 // images
 import WomenImage from "../../../../public/womenImage.jpeg";
@@ -27,7 +27,7 @@ const WomenPage = () => {
           <div className="font-bold text-4xl leading-[2.1rem] sm:text-5xl sm:leading-[3rem] pt-6 sm:pt-0 mb-2 sm:mb-9 text-center">
             THE HEAT IS ON: 5 LOOKS TO STAY COOL
           </div>
-          <div className="text-lg sm:text-xl mb-8 text-center">Icy air-con and stifling streets — Prada et al serve both</div>
+          <div className="text-lg sm:text-xl mb-8 text-center">Icy air-con and stifling streets — meet the pieces that serve both</div>
 
           <button className="w-full sm:w-[132px] h-[44px] flex justify-center items-center text-[#222222] font-semibold border border-black rounded-lg hover:bg-zinc-100">
             Explore More

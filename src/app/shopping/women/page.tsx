@@ -5,7 +5,7 @@ import { HiOutlineHeart } from "react-icons/hi";
 import WomenImage from "../../../../public/womenImage.jpeg";
 import WomenImage1 from "../../../../public/womenImage1.jpeg";
 
-import { ProductsData } from "@/data/products";
+import { ProductsData, TrendingProducts } from "@/data/products";
 
 const WomenPage = () => {
   const sectionClass = "flex max-w-[1440px] flex-col items-center justify-between px-[16px] md:px-[48px] mx-auto";
@@ -40,12 +40,12 @@ const WomenPage = () => {
 
       <div className="w-full flex flex-row justify-between items-center py-10 lg:px-[48px]">
         <div className="text-[22px]">New in: handpicked daily from the world’s best brands and boutiques</div>
-        <button className="hidden w-full sm:w-[132px] h-[44px] lg:flex justify-center items-center text-[#222222] font-semibold border border-black rounded-lg hover:bg-zinc-100">
+        <button className="hidden sm:flex sm:w-[132px] h-[44px] lg:flex justify-center items-center text-[#222222] font-semibold border border-black rounded-lg hover:bg-zinc-100">
           Shop Now
         </button>
       </div>
 
-      <div className="w-full pb-10 lg:px-[48px] flex flex-row gap-12 overflow-y-hidden overflow-x-auto">
+      <div className="w-full pb-10 lg:px-[48px] flex flex-row gap-12 overflow-y-hidden hide-scrollbar overflow-x-auto">
         {ProductsData.map((el) => (
           <div className="w-1/3 flex-none sm:w-1/4 sm:flex-1 relative -z-10" key={el.id}>
             <div className="absolute top-2 right-3">
@@ -65,9 +65,24 @@ const WomenPage = () => {
           </div>
         ))}
       </div>
+      <button className="w-full h-[44px] sm:hidden md:hidden text-[#222222] font-semibold border border-black rounded-lg hover:bg-zinc-100">
+        Shop Now
+      </button>
 
-      <div>
-        <div className="text-[28px] my-6 mx-0">Trending this week</div>
+      <div className="w-full pb-10">
+        <div className="w-full text-left md:text-center text-[28px] my-6 mx-0">Trending this week</div>
+
+        <div className="w-full flex flex-row gap-6 overflow-y-hidden hide-scrollbar overflow-x-auto">
+          {/* <div className="w-1/3 flex-none sm:w-1/4 sm:flex-1 relative -z-10"></div> */}
+          {TrendingProducts.map((el) => (
+            <div className="w-2/3 flex-none sm:w-1/4 sm:flex-1 relative -z-10">
+              <Image src={el.image} alt="trending-image" />
+
+              <div className="text-base mt-6">{el.name}</div>
+              <div className="text-base">{el.description}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

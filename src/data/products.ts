@@ -5,12 +5,16 @@ import P2 from "../../public/product/p2.png";
 import P3 from "../../public/product/p3.png";
 import P4 from "../../public/product/p4.png";
 
+import TrendingItem1 from '../../public/trending/p1.png'
+import TrendingItem2 from '../../public/trending/p2.png'
+import TrendingItem3 from '../../public/trending/p3.png'
+
 export interface ProductI {
   id: string;
   image: StaticImageData,
   name: string;
   description: string;
-  price: number;
+  price?: number;
 }
 
 export const ProductsData: ProductI[] = [
@@ -43,3 +47,24 @@ export const ProductsData: ProductI[] = [
     price: 1500,
   },
 ];
+
+export const TrendingProducts: ProductI[] = [
+  {
+    id: '0',
+    image: TrendingItem1,
+    name: 'OFF-WHITE',
+    description: 'The Pop Lollipop mules have landed',
+  },
+  {
+    id: '1',
+    image: TrendingItem2,
+    name: 'HOW TO STYLE YOUR SUMMER SKIRT',
+    description: 'From maxi to mini and how to wear them',
+  },
+  {
+    id: '2',
+    image: TrendingItem3,
+    name: 'MCM',
+    description: 'The Munich brand brings the summer accessories',
+  },
+]

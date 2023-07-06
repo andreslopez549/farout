@@ -1,15 +1,25 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { CiSearch } from "react-icons/ci";
 import { HiOutlineShoppingBag, HiOutlineHeart, HiOutlineUser } from "react-icons/hi";
-
+import { UserGenre } from "@/data/header";
 import SiteLogo from "@/assets/icons/logo.svg";
 import HeaderGenderList from "./headerGenderList";
 import SubHeader from "./subheader";
-import Link from "next/link";
-import { UserGenre } from "@/data/header";
 
 const Header = () => {
+  // Get current path of url
+  const currentPath = usePathname();
+
+  // Function to determine if a link is active
+  const isLinkActive = (path: string) => {
+    return currentPath === path;
+  };
+
   const smallRoundedContainers = "p-3 hover:bg-zinc-100 rounded-lg";
 
   return (
@@ -17,10 +27,12 @@ const Header = () => {
       <div className="w-full h-[68px] flex flex-row justify-between items-center">
         {/* HEADER TOP LEFT */}
         <div className="hidden md:flex md:flex-1">
-          {UserGenre.map((el) => (
-            <div className="text-base px-[12px] py-[10px] hover:bg-zinc-100 rounded-l-md">
-              <Link href={el.href}>{el.name}</Link>
-            </div>
+          {UserGenre.map((el, index) => (
+            <Link href={el.href}>
+              <div className={`text-base px-[12px] py-[10px] hover:bg-zinc-100 rounded-l-md ${isLinkActive(el.href) && "font-semibold"}`} key={index}>
+                {el.name}
+              </div>
+            </Link>
           ))}
         </div>
 

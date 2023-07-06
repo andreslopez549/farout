@@ -26,8 +26,8 @@ export default function HeaderGenderList({ UserGenre }: { UserGenre: NavLinkI[] 
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="absolute left-0 mt-2 w-32 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          {UserGenre.map((el) => (
-            <div className="py-1">
+          {UserGenre.map((el, index) => (
+            <div className="py-1" key={index}>
               <Menu.Item>
                 {({ active }) => (
                   <div

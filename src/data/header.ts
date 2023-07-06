@@ -49,18 +49,18 @@ export const NavLinks: NavLinkI[] = [
 export const UserGenre: NavLinkI[] = [
   {
     name: "Women",
-    href: "#",
+    href: "/shopping/women",
   },
   {
     name: "Men",
-    href: "#",
+    href: "/shopping/men",
   },
   {
     name: "Kids",
-    href: "#",
+    href: "/shopping/kids",
   },
   {
     name: "Beauty",
-    href: "#",
+    href: "/shopping/beauty",
   },
 ];

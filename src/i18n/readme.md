@@ -1,0 +1,1 @@
+Add all configs or files related to i18n in this folder

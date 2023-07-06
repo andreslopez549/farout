@@ -4,7 +4,7 @@ import { SupportInfoData } from "@/data/Women";
 import { ProductsData, TrendingProducts } from "@/data/products";
 
 // components
-import Get10PercentOff from "@/components/get10PercentOff/Get10PercentOff";
+import Get10PercentOff from "@/components/cards/get10PercentOff/Get10PercentOff";
 import SupportInfoCard from "@/components/cards/supportInfoCard/supportInfoCard";
 import ProductCard from "@/components/cards/ProductCard/productCard";
 import Button from "@/components/general/button/button";

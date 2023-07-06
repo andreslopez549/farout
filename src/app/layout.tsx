@@ -5,9 +5,9 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
-import Header from "@/components/header/header";
-import Footer from "@/components/footer/footer";
-import SubFooter from "@/components/footer/subFooter";
+import Header from "@/components/layouts/header/header";
+import Footer from "@/components/layouts/footer/footer";
+import SubFooter from "@/components/layouts/footer/subFooter";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 

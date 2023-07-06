@@ -1,28 +1,26 @@
 import Image from "next/image";
-import Link from "next/link";
-
 import { HiOutlineHeart } from "react-icons/hi";
-import { BiShoppingBag, BiComment } from "react-icons/bi";
-import { BsQuestionCircle } from "react-icons/bs";
-
-import WomenImage from "../../../../public/womenImage.jpeg";
-import WomenImage1 from "../../../../public/womenImage1.jpeg";
-import RandomProduct from "../../../../public/randomProduct.png";
-
+import { SupportInfoData } from "@/data/Women";
 import { ProductsData, TrendingProducts } from "@/data/products";
 
 // components
 import Get10PercentOff from "@/app/components/Get10PercentOff/Get10PercentOff";
-import { SupportInfoData } from "@/data/Women";
 import SupportInfoCard from "@/app/components/Cards/supportInfoCard/supportInfoCard";
 import ProductCard from "@/app/components/Cards/ProductCard/productCard";
+import Button from "@/app/components/general/button/button";
+
+// images
+import WomenImage from "../../../../public/womenImage.jpeg";
+import WomenImage1 from "../../../../public/womenImage1.jpeg";
+import RandomProduct from "../../../../public/randomProduct.png";
 
 const WomenPage = () => {
   const sectionClass = "flex max-w-[1440px] flex-col items-center justify-between px-[16px] md:px-[48px] mx-auto";
+  const gridCol2 = "w-full h-full grid grid-cols-1 lg:grid-cols-2 place-items-center";
 
   return (
     <div className={`${sectionClass} mb-10`}>
-      <div className={`w-full h-full grid grid-cols-1 lg:grid-cols-2 place-items-center`}>
+      <div className={`${gridCol2}`}>
         <Image src={WomenImage} alt="actor-image" className="w-full h-full object-cover pt-[20px] lg:p-[48px] order-1 lg:order-2" />
 
         <div className="w-full h-full flex flex-col justify-center items-center px-[4px] sm:px-[48px] py-[20px] lg:p-[48px] order-2 lg:order-1">
@@ -37,7 +35,7 @@ const WomenPage = () => {
         </div>
       </div>
 
-      <div className={`w-full h-full grid grid-cols-1 lg:grid-cols-2 place-items-center py-10`}>
+      <div className={`${gridCol2} py-10`}>
         <div className="w-full">
           <Image src={WomenImage1} alt="actor-image" className="w-full h-full object-cover pt-[20px] lg:px-[48px]" />
 
@@ -93,10 +91,8 @@ const WomenPage = () => {
       </div>
 
       <div className="w-full flex flex-row justify-between items-center py-10 lg:px-[48px]">
-        <div className="text-[22px]">It’s sandal season</div>
-        <button className="hidden sm:flex sm:w-[132px] h-[44px] lg:flex justify-center items-center text-[#222222] font-semibold border border-black rounded-lg hover:bg-zinc-100">
-          Shop Now
-        </button>
+        <div className="text-[1.3rem]">It’s sandal season</div>
+        <Button title="Shop Now" />
       </div>
       <div className="w-full pb-10 lg:px-[48px] flex flex-row gap-12 overflow-y-hidden hide-scrollbar overflow-x-auto">
         {ProductsData.map((item) => (
@@ -107,7 +103,7 @@ const WomenPage = () => {
         Shop Now
       </button>
 
-      <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 place-items-center">
+      <div className={`${gridCol2}`}>
         <Image src={RandomProduct} alt="actor-image" className="w-full h-full object-cover pt-[20px] lg:p-[48px] order-1" />
 
         <div className="w-full h-full flex flex-col justify-center items-center px-[4px] sm:px-[48px] py-[20px] lg:p-[48px] order-2">

@@ -13,7 +13,7 @@ export const SupportInfoData: SupportInfoCardI[] = [
     {
         href: "/how-to-shop",
         icon: BiShoppingBag,
-        title: "OW TO SHOP",
+        title: "HOW TO SHOP",
         description: "Your guide to shopping and placing orders"
     },
     {

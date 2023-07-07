@@ -5,7 +5,7 @@ const SubFooter = () => {
     <div className="w-full py-6">
       <div className="flex flex-row flex-wrap items-center gap-6 mb-5">
         {FooterLinks.map((item, index) => (
-          <button className="text-black underline">{item.name}</button>
+          <button className="text-black underline" key={index}>{item.name}</button>
         ))}
       </div>
       <>

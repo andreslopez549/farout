@@ -11,7 +11,7 @@ import SiteLogo from "@/assets/icons/logo.svg";
 import HeaderGenderList from "./headerGenderList";
 import SubHeader from "./subheader";
 
-const Header = () => {
+const Header = ({onShowSubMenu}: {onShowSubMenu: any}) => {
   // Get current path of url
   const currentPath = usePathname();
 
@@ -23,7 +23,9 @@ const Header = () => {
   const smallRoundedContainers = "p-3 hover:bg-zinc-100 rounded-lg";
 
   return (
-    <div className="w-full py-1 md:py-3">
+    <div className="flex max-w-[1440px] flex-col items-center justify-between px-[16px] md:px-[48px] mx-auto w-full py-1 md:py-3">
+
+      {/* TOP-HEADER SECTION */}
       <div className="w-full h-[68px] flex flex-row justify-between items-center">
         {/* HEADER TOP LEFT */}
         <div className="hidden md:flex md:flex-1">
@@ -75,7 +77,7 @@ const Header = () => {
 
       {/* SUB-HEADER SECTION */}
       <div className="w-full h-[44px] flex flex-row justify-between gap-4">
-        <SubHeader />
+        <SubHeader onShowSubMenu={onShowSubMenu} />
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { CiSearch } from "react-icons/ci";
 import { NavLinks } from "@/data/header";
 
-const SubHeader = () => {
+const SubHeader = ({ onShowSubMenu }: { onShowSubMenu: any }) => {
   const myDivRef = useRef<HTMLDivElement>(null);
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
@@ -65,15 +65,13 @@ const SubHeader = () => {
         <div className="hidden lg:flex item-center">
           {NavLinks.map((item, index) => (
             <div className="relative group">
-              <button className="min-w-fit px-[12px] py-[10px] cursor-pointer" key={item.name + index}>
+              <button
+                onMouseEnter={() => onShowSubMenu(true)}
+                className="min-w-fit px-[12px] py-[10px] cursor-pointer"
+                key={item.name + index}
+              >
                 {item.name}
               </button>
-              <div className="hidden group-hover:block absolute top-11 left-0 w-auto h-auto bg-red-500 px-[12px] py-[20px]">hello world</div>
-              {/* hidden group-hover:block  */}
-
-              {/* For Backdrop logic */}
-              {/* <div className="absolute top-11 left-0 w-full h-screen bg-[rgba(0,0,0,0.04)]"> */}
-              {/* </div> */}
             </div>
           ))}
         </div>

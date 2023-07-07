@@ -64,3 +64,82 @@ export const UserGenre: NavLinkI[] = [
     href: "/shopping/beauty",
   },
 ];
+
+export const NavLinksCategories = {
+  Sale: {
+    SALE: [
+      {
+        name: "All sale",
+        href: "#",
+      },
+      {
+        name: "Sale clothing",
+        href: "#",
+      },
+      {
+        name: "Sale jackets",
+        href: "#",
+      },
+      {
+        name: "Sale shirts",
+        href: "#",
+      },
+      {
+        name: "Sale sweatshirts & knitwear",
+        href: "#",
+      },
+      {
+        name: "Sale T-shirts",
+        href: "#",
+      },
+      {
+        name: "Sale shoes",
+        href: "#",
+      },
+      {
+        name: "Sale trainers",
+        href: "#",
+      },
+      {
+        name: "Sale bags",
+        href: "#",
+      },
+      {
+        name: "Sale accessories",
+        href: "#",
+      },
+    ],
+    STYLE: [
+      {
+        name: 'Sale: classic',
+        href: '#'
+      },
+      {
+        name: 'Sale: cult style',
+        href: '#'
+      },
+      {
+        name: 'Sale: hyper streetwear',
+        href: '#'
+      },
+      {
+        name: 'Sale: minimalism',
+        href: '#'
+      },
+    ],
+    EDITORSPICK: [
+      {
+        name: 'New in to sale',
+        href: "#"
+      },
+      {
+        name: 'Best of sale',
+        href: "#"
+      },
+      {
+        name: 'Favorite brands on sale',
+        href: "#"
+      },
+    ]
+  },
+};

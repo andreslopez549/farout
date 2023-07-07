@@ -28,7 +28,6 @@ const WomenPage = () => {
             THE HEAT IS ON: 5 LOOKS TO STAY COOL
           </div>
           <div className="text-lg sm:text-xl mb-8 text-center">Icy air-con and stifling streets — meet the pieces that serve both</div>
-
           <button className="w-full sm:w-[132px] h-[44px] flex justify-center items-center text-[#222222] font-semibold border border-black rounded-lg hover:bg-zinc-100">
             Explore More
           </button>
@@ -38,7 +37,6 @@ const WomenPage = () => {
       <div className={`${gridCol2} py-10`}>
         <div className="w-full">
           <Image src={WomenImage1} alt="actor-image" className="w-full h-full object-cover pt-[20px] lg:px-[48px]" />
-
           <div className="lg:px-[48px] mt-2 sm:mt-4">
             <div className="text-base leading-6 uppercase">DUA LIPA X VERSACE: LA VACANZA</div>
             <div className="text-base">Designer? Muse? Two become one in summer’s most hotly anticipated collection</div>
@@ -58,11 +56,9 @@ const WomenPage = () => {
             <div className="absolute top-2 right-3">
               <HiOutlineHeart size={22} />
             </div>
-
             <div className="flex justify-center mt-4">
               <Image src={el.image} className="w-56 object-cover" alt="product-image" />
             </div>
-
             <div className="mt-3">
               <div className="text-[#727272]">New Season</div>
               <div className="text-black font-semibold">{el.name}</div>

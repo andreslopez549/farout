@@ -1,5 +1,5 @@
 import React from "react";
-import Checkbox from "../../general/checkbox/checkbox";
+import Checkbox from "../common/checkbox/checkbox";
 
 const Get10PercentOff = () => {
   return (

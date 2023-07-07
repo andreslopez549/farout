@@ -29,7 +29,12 @@ const Header = () => {
         <div className="hidden md:flex md:flex-1">
           {UserGenre.map((el, index) => (
             <Link href={el.href} key={index}>
-              <div className={`text-base px-3 py-[10px] hover:bg-zinc-100 ${index === 0 && 'rounded-l-md'} ${index === 3 && 'rounded-r-md'} ${isLinkActive(el.href) && "font-semibold"}`} key={index}>
+              <div
+                className={`text-base px-3 py-[10px] hover:bg-zinc-100 ${index === 0 && "rounded-l-md"} ${index === 3 && "rounded-r-md"} ${
+                  isLinkActive(el.href) && "font-semibold"
+                }`}
+                key={index}
+              >
                 {el.name}
               </div>
             </Link>
@@ -71,11 +76,6 @@ const Header = () => {
       {/* SUB-HEADER SECTION */}
       <div className="w-full h-[44px] flex flex-row justify-between gap-4">
         <SubHeader />
-
-        <div className="shrink w-[270px] flex flex-row items-center border border-black px-3 rounded-md">
-          <CiSearch size={25} color={"gray"} className="mr-2" />
-          <input placeholder="Search" className="text-black w-full outline-none" />
-        </div>
       </div>
     </div>
   );

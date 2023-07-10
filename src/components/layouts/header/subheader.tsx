@@ -12,7 +12,7 @@ const SubHeader = ({ onShowSubMenu }: { onShowSubMenu: any }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const divElement = myDivRef.current;
+      const divElement: HTMLDivElement = myDivRef.current;
 
       setShowLeftButton(divElement?.scrollLeft > 0);
       setShowRightButton(divElement?.scrollLeft + divElement?.clientWidth < divElement?.scrollWidth);

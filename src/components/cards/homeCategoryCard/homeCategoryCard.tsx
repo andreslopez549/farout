@@ -11,8 +11,8 @@ interface HomeCategoryCardI {
 
 const HomeCategoryCard = ({ id, name, image, href }: HomeCategoryCardI) => {
   return (
-    <Link href={href}>
-      <div className="grid relative" key={id}>
+    <Link href={href} key={id}>
+      <div className="grid relative">
         <Image src={image} alt="home-card" className="w-full h-full" />
         <div className="absolute w-full h-full flex justify-center items-center font-bold text-3xl lg:text-5xl text-white">{name}</div>
       </div>

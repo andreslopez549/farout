@@ -11,6 +11,14 @@ export default function Page() {
 
   const sectionClass = "max-w-[1440px] px-[16px] md:px-[48px] mx-auto";
 
+  let userPlatform = navigator.userAgent;
+
+  let regexp = /android|iphone|kindle|ipad/i;
+
+  let isMobileDevice = regexp.test(userPlatform);
+
+  console.log("isMobileDevice === ", isMobileDevice);
+
   return (
     <div className={`flex flex-col ${sectionClass} py-6 md:py-8`}>
       <div className="text-[24px] py-[12px] sm:py-[24px] text-left sm:text-center">Choose a department</div>

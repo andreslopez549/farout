@@ -7,7 +7,7 @@ import { NavLinks } from "@/data/header";
 
 const SubHeader = ({ onShowSubMenu }: { onShowSubMenu: (val: boolean) => void }) => {
   const myDivRef = useRef<HTMLDivElement>(null);
-  
+
   const [showLeftButton, setShowLeftButton] = useState<boolean>(false);
   const [showRightButton, setShowRightButton] = useState<boolean>(true);
 
@@ -69,7 +69,7 @@ const SubHeader = ({ onShowSubMenu }: { onShowSubMenu: (val: boolean) => void })
         {/* For desktop Screens */}
         <div className="hidden lg:flex item-center">
           {NavLinks.map((item, index) => (
-            <div className="relative group">
+            <div className="relative group" key={index}>
               <button onMouseEnter={() => onShowSubMenu(true)} className="min-w-fit px-[12px] py-[10px] cursor-pointer" key={item.name + index}>
                 {item.name}
               </button>
@@ -79,7 +79,7 @@ const SubHeader = ({ onShowSubMenu }: { onShowSubMenu: (val: boolean) => void })
 
         <div className="shrink w-[270px] flex flex-row items-center border border-black px-3 rounded-md">
           <CiSearch size={25} color={"gray"} className="mr-2" />
-          <input placeholder="Search" className="text-black w-full outline-none" />
+          <input placeholder="Search" className="text-black w-full outline-none text-sm md:text-base" />
         </div>
       </div>
     </>

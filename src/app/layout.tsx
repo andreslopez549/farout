@@ -28,15 +28,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
 
         {/* HEADER AREA */}
-        <div className={`sticky top-0 bg-white`}>
+        <div className={`sticky top-0 bg-white z-50`}>
           <Header onShowSubMenu={setShowSubMenu} />
 
           {/* SUB HEADER - CATEGORIES DROPDOWN */}
           {showSubMenu && (
-            <div className="w-full h-[70vh] sm:h-screen overflow-y-scroll bg-[rgba(0,0,0,0.5)]">
+            <div className="w-full h-[70vh] sm:h-screen overflow-y-scroll md:overflow-y-hidden bg-[rgba(0,0,0,0.5)]">
               <div onMouseLeave={() => setShowSubMenu(false)} className="w-full bg-white">
                 <div className={"max-w-[1440px] h-auto flex items-center px-[16px] md:px-[60px] py-4 mx-auto"}>
-                  <div className="w-full h-auto grid grid-cols-2 sm:grid-cols-5 pb-8 gap-5">
+                  <div className="w-full h-auto grid grid-cols-2 sm:grid-cols-5 pb-8 gap-5 mx-auto">
                     <div className="col-span-1">
                       <div className="mb-5">SALE</div>
                       <div>
@@ -68,7 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       </div>
                     </div>
                     <div className="col-span-2">
-                      <Image src={NavLinksCategories.Sale.taggedPost.image} alt="black-dress" />
+                      <Image src={NavLinksCategories.Sale.taggedPost.image} alt="black-dress" className="w-full" />
                       <div className="text-sm text-gray-500 mt-3 mb-1">{NavLinksCategories.Sale.taggedPost.type}</div>
                       <div className="text-sm text-red-500">{NavLinksCategories.Sale.taggedPost.title}</div>
 

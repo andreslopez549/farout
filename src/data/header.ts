@@ -1,3 +1,5 @@
+import BlackDressImg from "../../public/blackDress.png";
+
 export interface NavLinkI {
   name: string;
   href: string;
@@ -140,6 +142,11 @@ export const NavLinksCategories = {
         name: 'Favorite brands on sale',
         href: "/#"
       },
-    ]
+    ],
+    taggedPost: {
+      image: BlackDressImg,
+      type: 'WOMEN',
+      title: 'SALE UPDATE: NOW UP TO 60% OFF SELECTED STYLES',
+    }
   },
 };

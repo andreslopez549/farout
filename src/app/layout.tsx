@@ -14,8 +14,6 @@ import Footer from "@/components/layouts/footer/footer";
 import SubFooter from "@/components/layouts/footer/subFooter";
 import { NavLinksCategories } from "@/data/header";
 
-import BlackDressImg from "../../public/blackDress.png";
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [showSubMenu, setShowSubMenu] = useState<boolean>(false);
 
@@ -70,11 +68,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       </div>
                     </div>
                     <div className="col-span-2">
-                      <Image src={BlackDressImg} alt="black-dress" />
-                      <div className="text-sm text-gray-500 mt-3 mb-1">WOMEN</div>
-                      <div className="text-sm text-red-500">SALE UPDATE: NOW UP TO 60% OFF SELECTED STYLES</div>
+                      <Image src={NavLinksCategories.Sale.taggedPost.image} alt="black-dress" />
+                      <div className="text-sm text-gray-500 mt-3 mb-1">{NavLinksCategories.Sale.taggedPost.type}</div>
+                      <div className="text-sm text-red-500">{NavLinksCategories.Sale.taggedPost.title}</div>
 
-                      <Link href={'/#'}>
+                      <Link href={"/#"}>
                         <div className="mt-3 text-sm underline">Shop Now</div>
                       </Link>
                     </div>

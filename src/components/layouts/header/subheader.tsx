@@ -38,7 +38,7 @@ const SubHeader = ({ onShowSubMenu }: { onShowSubMenu: any }) => {
     <>
       <div className="w-full flex flex-row justify-between">
         {/* FOR Mobile and Tab Screens */}
-        <div className="flex items-center lg:hidden max-w-[70%] -z-10">
+        <div className="flex items-center lg:hidden max-w-[70%]">
           {showLeftButton && (
             <button onClick={scrollLeft} className="w-11 h-11 grid place-items-center hover:bg-zinc-100 rounded-md cursor-pointer">
               <ChevronLeftIcon className="h-6 w-6 text-black" />
@@ -46,7 +46,11 @@ const SubHeader = ({ onShowSubMenu }: { onShowSubMenu: any }) => {
           )}
           <div ref={myDivRef} className="w-full flex items-center overflow-y-hidden hide-scrollbar overflow-x-auto">
             {NavLinks.map((item, index) => (
-              <button className={`min-w-fit px-[12px] py-[10px] cursor-pointer ${index === 0 && "pl-0"}`} key={item.name + index}>
+              <button
+                onMouseEnter={() => onShowSubMenu(true)}
+                className={`min-w-fit px-[12px] py-[10px] cursor-pointer ${index === 0 && "pl-0"}`}
+                key={item.name + index}
+              >
                 {item.name}
               </button>
             ))}
@@ -65,11 +69,7 @@ const SubHeader = ({ onShowSubMenu }: { onShowSubMenu: any }) => {
         <div className="hidden lg:flex item-center">
           {NavLinks.map((item, index) => (
             <div className="relative group">
-              <button
-                onMouseEnter={() => onShowSubMenu(true)}
-                className="min-w-fit px-[12px] py-[10px] cursor-pointer"
-                key={item.name + index}
-              >
+              <button onMouseEnter={() => onShowSubMenu(true)} className="min-w-fit px-[12px] py-[10px] cursor-pointer" key={item.name + index}>
                 {item.name}
               </button>
             </div>

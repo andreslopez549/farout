@@ -70,75 +70,75 @@ export const NavLinksCategories = {
     SALE: [
       {
         name: "All sale",
-        href: "#",
+        href: "/#",
       },
       {
         name: "Sale clothing",
-        href: "#",
+        href: "/#",
       },
       {
         name: "Sale jackets",
-        href: "#",
+        href: "/#",
       },
       {
         name: "Sale shirts",
-        href: "#",
+        href: "/#",
       },
       {
         name: "Sale sweatshirts & knitwear",
-        href: "#",
+        href: "/#",
       },
       {
         name: "Sale T-shirts",
-        href: "#",
+        href: "/#",
       },
       {
         name: "Sale shoes",
-        href: "#",
+        href: "/#",
       },
       {
         name: "Sale trainers",
-        href: "#",
+        href: "/#",
       },
       {
         name: "Sale bags",
-        href: "#",
+        href: "/#",
       },
       {
         name: "Sale accessories",
-        href: "#",
+        href: "/#",
       },
     ],
     STYLE: [
       {
         name: 'Sale: classic',
-        href: '#'
+        href: '/#'
       },
       {
         name: 'Sale: cult style',
-        href: '#'
+        href: '/#'
       },
       {
         name: 'Sale: hyper streetwear',
-        href: '#'
+        href: '/#'
       },
       {
         name: 'Sale: minimalism',
-        href: '#'
+        href: '/#'
       },
     ],
     EDITORSPICK: [
       {
         name: 'New in to sale',
-        href: "#"
+        href: "/#"
       },
       {
         name: 'Best of sale',
-        href: "#"
+        href: "/#"
       },
       {
         name: 'Favorite brands on sale',
-        href: "#"
+        href: "/#"
       },
     ]
   },

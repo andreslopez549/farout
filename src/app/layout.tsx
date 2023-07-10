@@ -2,18 +2,22 @@
 
 import "./globals.css";
 
+import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
+
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 import Header from "@/components/layouts/header/header";
 import Footer from "@/components/layouts/footer/footer";
 import SubFooter from "@/components/layouts/footer/subFooter";
-import { useState } from "react";
-import Link from "next/link";
 import { NavLinksCategories } from "@/data/header";
 
+import BlackDressImg from "../../public/blackDress.png";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const [showSubMenu, setShowSubMenu] = useState<boolean>(true);
+  const [showSubMenu, setShowSubMenu] = useState<boolean>(false);
 
   const sectionClass = "flex max-w-[1440px] flex-col items-center justify-between px-[16px] md:px-[48px] mx-auto";
 
@@ -28,11 +32,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* HEADER AREA */}
         <div className={`sticky top-0 bg-white`}>
           <Header onShowSubMenu={setShowSubMenu} />
+
+          {/* SUB HEADER - CATEGORIES DROPDOWN */}
           {showSubMenu && (
             <div className="w-full h-screen bg-[rgba(0,0,0,0.5)] absolute">
-              <div onMouseLeave={() => setShowSubMenu(false)} className="w-full h-auto bg-white">
-                <div className={"max-w-[1440px] flex items-center px-[16px] md:px-[60px] py-4 mx-auto "}>
-                  <div className="w-full grid grid-cols-5 bg-red-500">
+              <div onMouseLeave={() => setShowSubMenu(false)} className="w-full bg-white">
+                <div className={"max-w-[1440px] h-auto flex items-center px-[16px] md:px-[60px] py-4 mx-auto overflow-y-scroll sm:overflow-hidden"}>
+                  <div className="w-full h-auto grid grid-cols-2 sm:grid-cols-5 pb-8 gap-5">
                     <div className="col-span-1">
                       <div className="mb-5">SALE</div>
                       <div>
@@ -44,9 +50,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       </div>
                     </div>
                     <div className="col-span-1">
-                      <div className="mb-5">SALE</div>
+                      <div className="mb-5">STYLE</div>
                       <div>
-                        {NavLinksCategories.Sale["SALE"].map((el) => (
+                        {NavLinksCategories.Sale["STYLE"].map((el) => (
                           <Link href={el.href}>
                             <div className="mt-3 text-sm hover:underline">{el.name}</div>
                           </Link>
@@ -54,9 +60,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       </div>
                     </div>
                     <div className="col-span-1">
-                      <div className="mb-5">SALE</div>
+                      <div className="mb-5">EDITOR'S PICK</div>
                       <div>
-                        {NavLinksCategories.Sale["SALE"].map((el) => (
+                        {NavLinksCategories.Sale["EDITORSPICK"].map((el) => (
                           <Link href={el.href}>
                             <div className="mt-3 text-sm hover:underline">{el.name}</div>
                           </Link>
@@ -64,14 +70,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       </div>
                     </div>
                     <div className="col-span-2">
-                      <div className="mb-5">SALE</div>
-                      <div>
-                        {NavLinksCategories.Sale["SALE"].map((el) => (
-                          <Link href={el.href}>
-                            <div className="mt-3 text-sm hover:underline">{el.name}</div>
-                          </Link>
-                        ))}
-                      </div>
+                      <Image src={BlackDressImg} alt="black-dress" />
+                      <div className="text-sm text-gray-500 mt-3 mb-1">WOMEN</div>
+                      <div className="text-sm text-red-500">SALE UPDATE: NOW UP TO 60% OFF SELECTED STYLES</div>
+
+                      <Link href={'/#'}>
+                        <div className="mt-3 text-sm underline">Shop Now</div>
+                      </Link>
                     </div>
                   </div>
                 </div>

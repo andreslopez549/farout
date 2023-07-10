@@ -1,5 +1,5 @@
-import Image, { StaticImageData } from "next/image";
 import React from "react";
+import Image, { StaticImageData } from "next/image";
 import { HiOutlineHeart } from "react-icons/hi";
 
 export interface ProductCardI {

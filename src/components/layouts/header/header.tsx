@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CiSearch } from "react-icons/ci";
 import { HiOutlineShoppingBag, HiOutlineHeart, HiOutlineUser } from "react-icons/hi";
 import { UserGenre } from "@/data/header";
 import SiteLogo from "@/assets/icons/logo.svg";

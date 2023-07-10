@@ -7,8 +7,9 @@ import { NavLinks } from "@/data/header";
 
 const SubHeader = ({ onShowSubMenu }: { onShowSubMenu: (val: boolean) => void }) => {
   const myDivRef = useRef<HTMLDivElement>(null);
-  const [showLeftButton, setShowLeftButton] = useState(false);
-  const [showRightButton, setShowRightButton] = useState(true);
+  
+  const [showLeftButton, setShowLeftButton] = useState<boolean>(false);
+  const [showRightButton, setShowRightButton] = useState<boolean>(true);
 
   useEffect(() => {
     const handleScroll = () => {

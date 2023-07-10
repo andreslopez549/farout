@@ -11,7 +11,11 @@ import SiteLogo from "@/assets/icons/logo.svg";
 import HeaderGenderList from "./headerGenderList";
 import SubHeader from "./subheader";
 
-const Header = ({onShowSubMenu}: {onShowSubMenu: any}) => {
+interface HeaderI {
+  onShowSubMenu: (val: boolean) => void;
+}
+
+const Header = ({ onShowSubMenu }: HeaderI) => {
   // Get current path of url
   const currentPath = usePathname();
 
@@ -24,7 +28,6 @@ const Header = ({onShowSubMenu}: {onShowSubMenu: any}) => {
 
   return (
     <div className="flex max-w-[1440px] flex-col items-center justify-between px-[16px] md:px-[48px] mx-auto w-full py-1 md:py-3">
-
       {/* TOP-HEADER SECTION */}
       <div className="w-full h-[68px] flex flex-row justify-between items-center">
         {/* HEADER TOP LEFT */}
@@ -43,7 +46,7 @@ const Header = ({onShowSubMenu}: {onShowSubMenu: any}) => {
           ))}
         </div>
 
-        <div className="flex-1 md:hidden">
+        <div className="flex-1 md:hidden z-50">
           <HeaderGenderList UserGenre={UserGenre} />
         </div>
 

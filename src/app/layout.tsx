@@ -33,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           {/* SUB HEADER - CATEGORIES DROPDOWN */}
           {showSubMenu && (
-            <div className="w-full h-[70vh] sm:h-screen overflow-y-scroll md:overflow-y-hidden bg-[rgba(0,0,0,0.5)]">
+            <div className="w-full h-[70vh] sm:h-screen overflow-y-scroll md:overflow-y-hidden bg-[rgba(0,0,0,0.5)] absolute">
               <div onMouseLeave={() => setShowSubMenu(false)} className="w-full bg-white">
                 <div className={"max-w-[1440px] h-auto flex items-center px-[16px] md:px-[60px] py-4 mx-auto"}>
                   <div className="w-full h-auto grid grid-cols-2 sm:grid-cols-5 pb-8 gap-5 mx-auto">

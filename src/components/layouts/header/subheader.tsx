@@ -5,7 +5,7 @@ import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { CiSearch } from "react-icons/ci";
 import { NavLinks } from "@/data/header";
 
-const SubHeader = ({ onShowSubMenu }: { onShowSubMenu: any }) => {
+const SubHeader = ({ onShowSubMenu }: { onShowSubMenu: (val: boolean) => void }) => {
   const myDivRef = useRef<HTMLDivElement>(null);
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
@@ -47,7 +47,7 @@ const SubHeader = ({ onShowSubMenu }: { onShowSubMenu: any }) => {
           <div ref={myDivRef} className="w-full flex items-center overflow-y-hidden hide-scrollbar overflow-x-auto">
             {NavLinks.map((item, index) => (
               <button
-                onMouseEnter={() => onShowSubMenu(true)}
+                onClick={() => onShowSubMenu((prev: boolean) => !prev)}
                 className={`min-w-fit px-[12px] py-[10px] cursor-pointer ${index === 0 && "pl-0"}`}
                 key={item.name + index}
               >

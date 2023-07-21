@@ -1,0 +1,18 @@
+[
+    {
+      "id": 1,
+      "name": "Product 1",
+      "price": 10.99,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "image": "/images/product1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Product 2",
+      "price": 19.99,
+      "description": "Praesent nec erat a urna varius viverra in ac dolor.",
+      "image": "/images/product2.jpg"
+    }
+    
+  ]
+  

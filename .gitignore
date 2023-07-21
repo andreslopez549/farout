@@ -2,6 +2,9 @@
 
 # dependencies
 /node_modules
+/admin/node_modules
+/farout/node_modules
+/farout-backend/node_modules
 /.pnp
 .pnp.js
 

@@ -1,0 +1,393 @@
+{
+  "ssrModuleMapping": {
+    "(app-client)/./node_modules/next/dist/client/components/error-boundary.js": {
+      "*": {
+        "id": "(sc_client)/./node_modules/next/dist/client/components/error-boundary.js",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./node_modules/next/dist/client/components/app-router.js": {
+      "*": {
+        "id": "(sc_client)/./node_modules/next/dist/client/components/app-router.js",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./node_modules/next/dist/client/components/layout-router.js": {
+      "*": {
+        "id": "(sc_client)/./node_modules/next/dist/client/components/layout-router.js",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./node_modules/next/dist/client/components/render-from-template-context.js": {
+      "*": {
+        "id": "(sc_client)/./node_modules/next/dist/client/components/render-from-template-context.js",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./node_modules/next/dist/client/components/static-generation-searchparams-bailout-provider.js": {
+      "*": {
+        "id": "(sc_client)/./node_modules/next/dist/client/components/static-generation-searchparams-bailout-provider.js",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./src/app/page.tsx": {
+      "*": {
+        "id": "(sc_client)/./src/app/page.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./src/app/layout.tsx": {
+      "*": {
+        "id": "(sc_client)/./src/app/layout.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./node_modules/next/dist/client/image-component.js": {
+      "*": {
+        "id": "(sc_client)/./node_modules/next/dist/client/image-component.js",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./node_modules/next/dist/client/link.js": {
+      "*": {
+        "id": "(sc_client)/./node_modules/next/dist/client/link.js",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./public/womenImage.jpeg": {
+      "*": {
+        "id": "(sc_client)/./public/womenImage.jpeg",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./public/womenImage1.jpeg": {
+      "*": {
+        "id": "(sc_client)/./public/womenImage1.jpeg",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./public/randomProduct.png": {
+      "*": {
+        "id": "(sc_client)/./public/randomProduct.png",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./public/product/p1.png": {
+      "*": {
+        "id": "(sc_client)/./public/product/p1.png",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./public/trending/p1.png": {
+      "*": {
+        "id": "(sc_client)/./public/trending/p1.png",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./public/trending/p2.png": {
+      "*": {
+        "id": "(sc_client)/./public/trending/p2.png",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./public/trending/p3.png": {
+      "*": {
+        "id": "(sc_client)/./public/trending/p3.png",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./src/components/common/checkbox/checkbox.tsx": {
+      "*": {
+        "id": "(sc_client)/./src/components/common/checkbox/checkbox.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./public/userImage.jpeg": {
+      "*": {
+        "id": "(sc_client)/./public/userImage.jpeg",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./public/kidsImage.jpeg": {
+      "*": {
+        "id": "(sc_client)/./public/kidsImage.jpeg",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./public/beautyImage.jpeg": {
+      "*": {
+        "id": "(sc_client)/./public/beautyImage.jpeg",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    }
+  },
+  "edgeSSRModuleMapping": {},
+  "clientModules": {
+    "/home/admini/Documents/farout/farout/node_modules/next/dist/client/components/error-boundary.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/components/error-boundary.js",
+      "name": "*",
+      "chunks": [
+        "app-client-internals:static/chunks/app-client-internals.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/node_modules/next/dist/esm/client/components/error-boundary.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/components/error-boundary.js",
+      "name": "*",
+      "chunks": [
+        "app-client-internals:static/chunks/app-client-internals.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/node_modules/next/dist/client/components/app-router.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/components/app-router.js",
+      "name": "*",
+      "chunks": [
+        "app-client-internals:static/chunks/app-client-internals.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/node_modules/next/dist/esm/client/components/app-router.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/components/app-router.js",
+      "name": "*",
+      "chunks": [
+        "app-client-internals:static/chunks/app-client-internals.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/node_modules/next/dist/client/components/layout-router.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/components/layout-router.js",
+      "name": "*",
+      "chunks": [
+        "app-client-internals:static/chunks/app-client-internals.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/node_modules/next/dist/esm/client/components/layout-router.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/components/layout-router.js",
+      "name": "*",
+      "chunks": [
+        "app-client-internals:static/chunks/app-client-internals.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/node_modules/next/dist/client/components/render-from-template-context.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/components/render-from-template-context.js",
+      "name": "*",
+      "chunks": [
+        "app-client-internals:static/chunks/app-client-internals.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/node_modules/next/dist/esm/client/components/render-from-template-context.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/components/render-from-template-context.js",
+      "name": "*",
+      "chunks": [
+        "app-client-internals:static/chunks/app-client-internals.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/node_modules/next/dist/client/components/static-generation-searchparams-bailout-provider.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/components/static-generation-searchparams-bailout-provider.js",
+      "name": "*",
+      "chunks": [
+        "app-client-internals:static/chunks/app-client-internals.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/node_modules/next/dist/esm/client/components/static-generation-searchparams-bailout-provider.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/components/static-generation-searchparams-bailout-provider.js",
+      "name": "*",
+      "chunks": [
+        "app-client-internals:static/chunks/app-client-internals.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/src/app/page.tsx": {
+      "id": "(app-client)/./src/app/page.tsx",
+      "name": "*",
+      "chunks": [
+        "app/page:static/chunks/app/page.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/src/app/layout.tsx": {
+      "id": "(app-client)/./src/app/layout.tsx",
+      "name": "*",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/node_modules/next/dist/client/image-component.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/image-component.js",
+      "name": "*",
+      "chunks": [
+        "app/shopping/beauty/page:static/chunks/app/shopping/beauty/page.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/node_modules/next/dist/esm/client/image-component.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/image-component.js",
+      "name": "*",
+      "chunks": [
+        "app/shopping/beauty/page:static/chunks/app/shopping/beauty/page.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/node_modules/next/dist/client/link.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/link.js",
+      "name": "*",
+      "chunks": [
+        "app/shopping/women/page:static/chunks/app/shopping/women/page.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/node_modules/next/dist/esm/client/link.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/link.js",
+      "name": "*",
+      "chunks": [
+        "app/shopping/women/page:static/chunks/app/shopping/women/page.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/public/womenImage.jpeg": {
+      "id": "(app-client)/./public/womenImage.jpeg",
+      "name": "*",
+      "chunks": [
+        "app/shopping/women/page:static/chunks/app/shopping/women/page.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/public/womenImage1.jpeg": {
+      "id": "(app-client)/./public/womenImage1.jpeg",
+      "name": "*",
+      "chunks": [
+        "app/shopping/women/page:static/chunks/app/shopping/women/page.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/public/randomProduct.png": {
+      "id": "(app-client)/./public/randomProduct.png",
+      "name": "*",
+      "chunks": [
+        "app/shopping/women/page:static/chunks/app/shopping/women/page.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/public/product/p1.png": {
+      "id": "(app-client)/./public/product/p1.png",
+      "name": "*",
+      "chunks": [
+        "app/shopping/women/page:static/chunks/app/shopping/women/page.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/public/trending/p1.png": {
+      "id": "(app-client)/./public/trending/p1.png",
+      "name": "*",
+      "chunks": [
+        "app/shopping/women/page:static/chunks/app/shopping/women/page.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/public/trending/p2.png": {
+      "id": "(app-client)/./public/trending/p2.png",
+      "name": "*",
+      "chunks": [
+        "app/shopping/women/page:static/chunks/app/shopping/women/page.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/public/trending/p3.png": {
+      "id": "(app-client)/./public/trending/p3.png",
+      "name": "*",
+      "chunks": [
+        "app/shopping/women/page:static/chunks/app/shopping/women/page.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/src/components/common/checkbox/checkbox.tsx": {
+      "id": "(app-client)/./src/components/common/checkbox/checkbox.tsx",
+      "name": "*",
+      "chunks": [
+        "app/shopping/women/page:static/chunks/app/shopping/women/page.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/public/userImage.jpeg": {
+      "id": "(app-client)/./public/userImage.jpeg",
+      "name": "*",
+      "chunks": [
+        "app/shopping/men/page:static/chunks/app/shopping/men/page.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/public/kidsImage.jpeg": {
+      "id": "(app-client)/./public/kidsImage.jpeg",
+      "name": "*",
+      "chunks": [
+        "app/shopping/kids/page:static/chunks/app/shopping/kids/page.js"
+      ],
+      "async": false
+    },
+    "/home/admini/Documents/farout/farout/public/beautyImage.jpeg": {
+      "id": "(app-client)/./public/beautyImage.jpeg",
+      "name": "*",
+      "chunks": [
+        "app/shopping/beauty/page:static/chunks/app/shopping/beauty/page.js"
+      ],
+      "async": false
+    }
+  },
+  "entryCSSFiles": {
+    "/home/admini/Documents/farout/farout/src/app/page": [],
+    "/home/admini/Documents/farout/farout/src/app/layout": [
+      "static/css/app/layout.css"
+    ],
+    "/home/admini/Documents/farout/farout/src/app/shopping/women/page": [],
+    "/home/admini/Documents/farout/farout/src/app/shopping/men/page": [],
+    "/home/admini/Documents/farout/farout/src/app/shopping/kids/page": [],
+    "/home/admini/Documents/farout/farout/src/app/shopping/beauty/page": []
+  }
+}

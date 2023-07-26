@@ -36,13 +36,14 @@ const ProductsPage: React.FC<ProductsProps> = ({ products }) => {
           <th>Discription</th>
           <th>Price</th>
           <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
        
         {products.map((product) => (
            <tr key={product._id}>
-         <td> <img src={product.images?`${process.env.NEXT_PUBLIC_API_BASE_URL}images/${product.images}`:''} width="100px" alt={product.name} /></td>
+         <td> <img src={product.images?`${process.env.NEXT_PUBLIC_API_BASE_URL}images/${product.images[0]}`:''} width="100px" alt={product.name} /></td>
          <td>{product.name}</td>
           <td><p>{product.discription}</p></td>
           <td>${product.price}</td>
@@ -50,7 +51,11 @@ const ProductsPage: React.FC<ProductsProps> = ({ products }) => {
             <a >View Details</a>
           </Link></td>
         
-          <td></td>
+          <td>
+          <Link legacyBehavior href={`/editproduct/${product._id}`}>
+            <a>Edit Product</a>
+          </Link>
+          </td>
           
           </tr>
       

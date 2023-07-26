@@ -3,17 +3,32 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { AdminLayout } from '@layout';
 import { Card, Alert, Modal, Button } from 'react-bootstrap';
-import { productService, brandService, categoryService, attributeService } from '../../_services';
-import Link from 'next/link';
+import { productService, categoryService, attributeService, brandService } from 'src/_services';
 
 
+interface Product {
+  _id: string;
+  name: string;
+  type: string;
+  images: [];
+  price: string,
+  discription: string,
+  sku: string,
+  brand: string,
+  categories: string,
+  inventory: string,
+  variants: string
+}
 
-interface NewProductPageProps { }
+interface EditProductPageProps {
+  productdata: Product
+}
 
 interface Brands {
   name: string;
   _id: string
 }
+
 interface Category {
   name: string,
   type: string,
@@ -26,21 +41,21 @@ interface Attributes {
 }
 
 interface Variant {
-
   variantsize: string,
   variantstock: string,
   variantofferprice: string,
   variantsellingprice: string,
   variantdiscount: string,
   variantquantity: string
-
 }
 
-
-
-const NewProductPage: NextPage<NewProductPageProps> = () => {
+const EditProductPage: NextPage<EditProductPageProps> = (productdata) => {
   const router = useRouter();
+  const { productId } = router.query;
+
+
   const [product, setProduct] = useState({
+    _id: '',
     name: '',
     price: '',
     discription: '',
@@ -53,58 +68,56 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
   });
 
   const producttype = ["Men", "Women", "Kids"];
-
-  const [images, setImages] = useState<File[]>([]);
-  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
-  const [showdangerAlert, setShowdangerAlert] = useState(false);
-  const [showvariants, setShowvariants] = useState(false);
-  const [selectBoxValues, setSelectBoxValues] = useState<string[]>([]);
-  const [previewImages, setPreviewImages] = useState<string[]>([]);
-  const [brands, setBrands] = useState<Brands[]>([]);
-  const [attributes, setattributes] = useState<Attributes[]>([]);
-  const [category, setcategory] = useState<Category[]>([]);
+  const [mounted, setMounted] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const [images, setImages] = useState<File[]>([]);
+  const [category, setcategory] = useState<Category[]>([]);
+  const [brands, setBrands] = useState<Brands[]>([]);
+  const [previewImages, setPreviewImages] = useState<string[]>([]);
+  const [editpreviewImages, setEditPreviewImages] = useState<string[]>([]);
+  const [showvariants, setShowvariants] = useState(false);
+  const [selectBoxValues, setSelectBoxValues] = useState<string[]>([]);
+  const [attributes, setattributes] = useState<Attributes[]>([]);
   const [Variants, setVariants] = useState([{}]);;
 
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
 
+    if (files && files.length > 0) {
+      setEditPreviewImages([]);
+      const newImages: File[] = [];
 
-  const handleVariantbuttonclick = () => {
-    setSelectBoxValues((prevValues) => [...prevValues, '']);
-    setShowvariants(true);
-      console.log(selectBoxValues,"s")
-    setVariants((prevVariants) => [
-      ...prevVariants,
-      {
-      },
-    ]);
+      for (let i = 0; i < files.length; i++) {
+        newImages.push(files[i]);
+      }
 
+      setImages(prevImages => [...prevImages, ...newImages]);
+
+      // Image previews using FileReader
+      const newPreviews: string[] = [];
+
+      for (let i = 0; i < files.length; i++) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          if (reader.result && typeof reader.result === 'string') {
+            newPreviews.push(reader.result);
+            if (newPreviews.length === files.length) {
+              setPreviewImages(newPreviews);
+            }
+          }
+        };
+        reader.readAsDataURL(files[i]);
+      }
+    }
   };
 
-  const handleRemoveVariant = (index) => {
-    console.log(selectBoxValues,"s")
-    setVariants((prevVariants) => {
-      const newVariants = [...prevVariants];
-      newVariants.splice(index, 1);
-      return newVariants;
-    });
-    setSelectBoxValues((prevValues) => {
-      const newValues = [...prevValues];
-      newValues.splice(index, 1);
-      return newValues;
-    });
-
-
-  };
-
-
-  const handleVariantprice = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleVariant = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
-     console.log(name,value)
-     
+    console.log(name, value)
+
     const variantIndex = parseInt(name.slice(-1), 10);
-      console.log(Variants)
+    console.log(Variants)
     if (name == `variantofferprice${variantIndex}`) {
       setVariants((prevVariants) =>
         prevVariants.map((variant, i) => (i === variantIndex ? { ...variant, variantofferprice: value } : variant))
@@ -153,9 +166,32 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
 
   };
 
+  const handleRemoveVariant = (index) => {
+    setVariants((prevVariants) => {
+      const newVariants = [...prevVariants];
+      newVariants.splice(index, 1);
+      return newVariants;
+    });
+    setSelectBoxValues((prevValues) => {
+      const newValues = [...prevValues];
+      newValues.splice(index, 1);
+      return newValues;
+    });
 
 
+  };
 
+  const handleVariantbuttonclick = () => {
+    setSelectBoxValues((prevValues) => [...prevValues, '']);
+    setShowvariants(true);
+
+    setVariants((prevVariants) => [
+      ...prevVariants,
+      {
+      },
+    ]);
+
+  };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
@@ -163,66 +199,80 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
     // console.log(name, value)
     setProduct((prevProduct) => ({ ...prevProduct, [name]: value }));
 
+
   };
 
 
+  const setinitialvalue=()=>{
+    console.log(Variants[0]["variantdiscount"],"variant")
+  }
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
+   useEffect(() => {
 
-    if (files && files.length > 0) {
-      const newImages: File[] = [];
 
-      for (let i = 0; i < files.length; i++) {
-        newImages.push(files[i]);
-      }
+    const getbrands = brandService.allbrands().then(res => {
+      // console.log(res, "brands")
+      setBrands(res);
+    });
 
-      setImages(prevImages => [...prevImages, ...newImages]);
+    const getcategory = categoryService.allcategories().then(res => {
+      setcategory(res);
+    });
 
-      // Image previews using FileReader
-      const newPreviews: string[] = [];
+    const getattributes = attributeService.allattributes().then(res => {
+      // console.log(res)
+      setattributes(res);
 
-      for (let i = 0; i < files.length; i++) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          if (reader.result && typeof reader.result === 'string') {
-            newPreviews.push(reader.result);
-            if (newPreviews.length === files.length) {
-              setPreviewImages(newPreviews);
-            }
-          }
-        };
-        reader.readAsDataURL(files[i]);
-      }
+    });
+
+    const productdetail = productdata.productdata;
+    if (productdata) {
+
+      // console.log(productdata);
+
+
+      setProduct({
+        _id: productdetail._id,
+        name: productdetail.name,
+        price: productdetail.price,
+        discription: productdetail.discription,
+        sku: productdetail.sku,
+        brand: productdetail.brand,
+        type: productdetail.sku,
+        category: productdetail.categories[0],
+        inventory: productdetail.sku,
+        variantvalue: ''
+      });
+
+      setEditPreviewImages(productdetail.images)
+      // console.log(product)
     }
-  };
 
-  const isVariantEmpty = (objectName) => {
-    return JSON.stringify(objectName) === "{}";
-  };
+    setinitialvalue()
+    if (typeof window !== 'undefined' && !mounted) {
+      // console.log(productdetail.variant)
+      const editvariants = JSON.parse(productdetail.variants);
 
+      setVariants(editvariants);
+      
+      
+       
+      setSelectBoxValues(['']);
+      setShowvariants(true);
 
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-
-    console.log(Variants, "varassa")
-
-   
-    event.preventDefault();
+      setMounted(true);
+      
+        console.log(selectBoxValues);
      
-    const checkvariant=isVariantEmpty(Variants[0])
-    if(checkvariant==true){
-      alert("Please fill variant detail first")
-      return;
     }
+  }, [mounted]);
 
-   
-    
+  // Rest of the event handlers (handleInputChange, handleImageChange, etc.)
 
+  // Modify the handleSubmit function to handle product update
+  const handleUpdate = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-    const Variantdata = [Variants];
-    console.log(Variantdata)
-    const variants = JSON.stringify(Variants);
     const formData = new FormData();
     formData.append('name', product.name);
     formData.append('price', product.price);
@@ -233,102 +283,28 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
     formData.append('type', product.type);
     formData.append('categories', product.category);
 
+    // ... Append other product data to the formData, such as variants and images
 
-    formData.append('variants', variants);
-
-
-
-    for (let i = 0; i < images.length; i++) {
-      formData.append('image', images[i]);
-    }
-       
-
-    const createproduct = productService.createproduct(formData).then(response => {
-      if (response.status == 200) {
-        setShowSuccessModal(true);
-        // Hide the error modal if it was open
-        setShowErrorModal(false);
-        router.push('/products');
-      } else {
-        setShowErrorModal(true);
-        // Hide the success modal if it was open
-        setShowSuccessModal(false);
-      }
-    });
-
-
+    // Example: const updateProduct = productService.updateProduct(productId, formData);
+    // Handle success and error modals accordingly
   };
-
-  useEffect(() => {
-
-    // console.log(selectBoxValues);
-    if (typeof window !== 'undefined' && !mounted) {
-      // Fetch brands from api
-      const getbrands = brandService.allbrands().then(res => {
-        // console.log(res, "brands")
-        setBrands(res);
-      });
-
-      const getcategory = categoryService.allcategories().then(res => {
-        setcategory(res);
-      });
-
-      const getattributes = attributeService.allattributes().then(res => {
-        console.log(res)
-        setattributes(res);
-
-      });
-
-      setSelectBoxValues(['']);
-      setShowvariants(true);
-
-      handleRemoveVariant(1);
-      // }
-
-
-
-      setMounted(true);
-    }
-  }, [mounted]);
-
-
-
 
   return (
     <AdminLayout>
+      {/* Same modal components for success and error as in NewProductPage */}
       <Modal show={showSuccessModal} onHide={() => setShowSuccessModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Success</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Product created successfully!
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowSuccessModal(false)}>
-            Close
-          </Button>
-        </Modal.Footer>
+        {/* ... Modal content */}
       </Modal>
 
       <Modal show={showErrorModal} onHide={() => setShowErrorModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Error</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Error on creating the product!
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowErrorModal(false)}>
-            Close
-          </Button>
-        </Modal.Footer>
+        {/* ... Modal content */}
       </Modal>
 
       <Card>
-        <Card.Header>Create new Product   </Card.Header>
+        <Card.Header>Edit Product</Card.Header>
         <Card.Body>
           <div className='container'>
-            <form onSubmit={handleSubmit} className='cr-form'>
+            <form onSubmit={handleUpdate} className='cr-form'>
               <div className="form-group fform-group">
 
                 <label htmlFor="sku">SKU</label>
@@ -394,6 +370,15 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
                   multiple // Allow multiple image selection
                   onChange={handleImageChange}
                 />
+                {editpreviewImages.map((previewImage, index) => (
+                  <img
+                    key={index}
+                    src={`${process.env.NEXT_PUBLIC_API_BASE_URL}images/${previewImage}`}
+                    width="100"
+                    alt={`Preview ${index + 1}`}
+                    className="image-preview"
+                  />
+                ))}
                 {previewImages.map((previewImage, index) => (
                   <img
                     key={index}
@@ -404,32 +389,26 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
                   />
                 ))}
               </div>
-
-
               <div className="form-group fform-group">
-
-
-
-
                 {showvariants && (
                   <div >
                     {selectBoxValues.map((value, index) => (
 
                       <div key={index} className='var-opt'>
                         <h1>Select Variant {index + 1}</h1>
-                        {index !=0 &&(
-                        <button
-                        className="btn btn-danger sub-butn"
-                        type="button"
-                        onClick={() => handleRemoveVariant(index)}
-                      >
-                        Remove Variant
-                      </button> 
+                        {index != 0 && (
+                          <button
+                            className="btn btn-danger sub-butn"
+                            type="button"
+                            onClick={() => handleRemoveVariant(index)}
+                          >
+                            Remove Variant
+                          </button>
                         )}
                         {attributes.map((attribute, indexs) => (
                           <div className='var-option' key={indexs}>
                             <label key={indexs}>{attribute.name}</label>
-                            <select className='variant-selectb' name={`attribute${attribute.name}${index}`} onChange={handleVariantprice}>
+                            <select className='variant-selectb' value={Variants[0][`attribute${attribute.name}${index}`] || ''} name={`attribute${attribute.name}${index}`} onChange={handleVariant}>
                               <option >Select Unit</option>
                               {attribute.units.map((attributeunit, index) => (
                                 <option key={index}>
@@ -443,19 +422,19 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
 
                         <div className='var-option'>
                           <label>Stock</label>
-                          <input className="form-control variant-selectb fform-group" placeholder='Enter Variant Quantity ' type="text" id={`variantstock${index}`} name={`variantstock${index}`} onChange={handleVariantprice} />
+                          <input className="form-control variant-selectb fform-group" placeholder='Enter Variant Stock availabel ' type="text" id={`variantstock${index}`} name={`variantstock${index}`} onChange={handleVariant} />
                         </div>
                         <div className='var-option'>
                           <label>Offer Price</label>
-                          <input className="form-control variant-selectb fform-group" placeholder='Enter Variant Offer Price' type="text" id={`variantofferprice${index}`} name={`variantofferprice${index}`} onChange={handleVariantprice} />
+                          <input className="form-control variant-selectb fform-group" placeholder='Enter Variant Offer Price' type="text" id={`variantofferprice${index}`} name={`variantofferprice${index}`} onChange={handleVariant} />
                         </div>
                         <div className='var-option'>
                           <label>Regular Price</label>
-                          <input className="form-control variant-selectb fform-group" placeholder='Enter Variant Selling Price' type="text" id={`variantsellingprice${index}`} name={`variantsellingprice${index}`} onChange={handleVariantprice} />
+                          <input className="form-control variant-selectb fform-group" placeholder='Enter Variant Selling Price' type="text" id={`variantsellingprice${index}`} name={`variantsellingprice${index}`} onChange={handleVariant} />
                         </div>
                         <div className='var-option'>
                           <label>Discount %</label>
-                          <input className="form-control variant-selectb fform-group" placeholder='Enter Discount Rate' type="text" id={`variantdiscountprice${index}`} name={`variantdiscount${index}`} onChange={handleVariantprice} />
+                          <input className="form-control variant-selectb fform-group" placeholder='Enter Discount Rate' type="text" id={`variantdiscountprice${index}`} name={`variantdiscount${index}`} onChange={handleVariant} />
                         </div>
                       </div>
                     ))}
@@ -465,19 +444,38 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
               <div className="form-group fform-group">
                 <button className="btn btn-danger sub-butn" type="button" onClick={handleVariantbuttonclick}>Add Variants</button>
               </div>
-
-
-
-              <div className="form-group fform-group ">
-                <button className="btn btn-warning sub-butn create-prod-butn" type="submit">Create Product</button>
+              <div className="form-group">
+                <button className="btn btn-warning sub-butn create-prod-butn" type="submit">
+                  Update Product
+                </button>
               </div>
             </form>
           </div>
         </Card.Body>
-      </Card >
-
-    </AdminLayout >
+      </Card>
+    </AdminLayout>
   );
 };
 
-export default NewProductPage;
+export async function getServerSideProps({ params }) {
+  try {
+    const { id } = params;
+    const productdata = await productService.getproducts(id);
+    // console.log(productdata, "aaaaa");
+    return {
+      props: {
+        productdata,
+      },
+    };
+  } catch (error: any) {
+    // Handle errors if the API call fails
+    console.error('Error fetching product data:', error.message);
+    return {
+      notFound: true, // Return 404 page or error handling page
+    };
+  }
+
+
+}
+
+export default EditProductPage;

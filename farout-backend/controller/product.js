@@ -9,18 +9,12 @@ const multer = require('multer');
 const create = async  (req, res, next) => {
   
    
-    
-   
 
     try {
           console.log(req.body)
         const { name, imagelink, categories,price,brand } = req.body;
         let product = await productmodel.findOne({ name });
-        if (product) {
-            return res
-                .status(400)
-                .json({ errors: [{ msg: 'Product already exists' }] });
-        }
+       
         if(req.file){
 
       
@@ -56,6 +50,9 @@ const create = async  (req, res, next) => {
         );
 
         await product.save();
+      
+        console.log(product._id)
+          
         return res.json({ message: "Product Created Successfully", data: product });
 
     }

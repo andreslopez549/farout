@@ -20,6 +20,7 @@ const ProductDetailsPage: React.FC<ProductDetailsProps> = ({ product }) => {
       <h2>{product.name}</h2>
       <p>{product.discription}</p>
       <p>Price: ${product.price}</p>
+      
     </div>
     </Card.Body>
       </Card>

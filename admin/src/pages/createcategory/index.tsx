@@ -69,9 +69,10 @@ const [previewImage, setPreviewImage] = useState<string | null>(null);
         <div className="form-group fform-group">
           <label htmlFor="imagelink">Select Product Type</label>
           <select  className="form-control" id="type" name="type" value={product.type} onChange={handleInputChange} >
+          <option></option>
           { producttype.map((type, index) => (
                       
-                      <option key={index} value={type} selected>{type}</option>
+                      <option key={index} value={type} >{type}</option>
                                             )) }
           </select>
         </div>

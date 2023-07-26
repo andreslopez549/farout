@@ -27,3 +27,81 @@
 .fform-group {
     margin-top: 12px !important;
 }
+
+.variant-selectb {
+   width: 200px;
+   height: 30px;
+}
+
+.var-opt{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-top: 30px;
+    align-content: center;
+    flex-wrap: wrap;
+    gap: 11px;
+}
+
+.image-labl{
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 35px;
+    margin-top: 25px;
+}
+
+.var-option{
+    display: flex;
+    flex-direction: row;
+    /* align-content: space-between; */
+    justify-content: space-between;
+    align-items: center;
+    gap: 61px;
+}
+
+.create-prod-butn{
+    width: 221px;
+    background: #7e7ec3;
+    color: aliceblue;
+    height: 57px;
+}
+
+.list-attribute{
+    list-style: none;
+    padding: 11px;
+    display: flex;
+    gap: 40px;
+}
+
+.edit-frm {
+    display: flex;
+    gap: 44px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.edit-cat-frm{
+    padding: 36px;
+    margin-top: 11px;
+    display: flex;
+    flex-direction: column;
+    gap: 33px;
+}
+
+form.edit-cat-frm button {
+    border-radius: 6px;
+    background: #dfe7ce;
+    width: 154px;
+    height: 37px;
+}
+
+form.edit-cat-frm input {
+    padding: 6px;
+}
+
+form.edit-cat-frm select {
+    padding: 6px;
+}
+

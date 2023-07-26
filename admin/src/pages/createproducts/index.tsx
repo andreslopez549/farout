@@ -58,6 +58,8 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [showdangerAlert, setShowdangerAlert] = useState(false);
   const [showvariants, setShowvariants] = useState(false);
+  const [showsizes, setShowsizes] = useState<boolean[]>([]);
+  const [showoptionvalue, setShowoptionvalue] = useState<boolean[]>([]);
   const [selectBoxValues, setSelectBoxValues] = useState<string[]>([]);
   const [previewImages, setPreviewImages] = useState<string[]>([]);
   const [brands, setBrands] = useState<Brands[]>([]);
@@ -66,6 +68,7 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [firstvariant, setfirstvariant] = useState({});
   const [Variants, setVariants] = useState([{}]);;
 
 
@@ -73,17 +76,12 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
   const handleVariantbuttonclick = () => {
     setSelectBoxValues((prevValues) => [...prevValues, '']);
     setShowvariants(true);
-      console.log(selectBoxValues,"s")
-    setVariants((prevVariants) => [
-      ...prevVariants,
-      {
-      },
-    ]);
-
+    setShowsizes((prevSizes) => [...prevSizes, false]);
+    setShowoptionvalue((prevSizes) => [...prevSizes, false]);
+   
   };
 
   const handleRemoveVariant = (index) => {
-    console.log(selectBoxValues,"s")
     setVariants((prevVariants) => {
       const newVariants = [...prevVariants];
       newVariants.splice(index, 1);
@@ -94,17 +92,24 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
       newValues.splice(index, 1);
       return newValues;
     });
-
-
+    setShowsizes((prevSizes) => {
+      const newSizes = [...prevSizes];
+      newSizes.splice(index, 1);
+      return newSizes;
+    });
+    setShowoptionvalue((prevOptions) => {
+      const newOptions = [...prevOptions];
+      newOptions.splice(index, 1);
+      return newOptions;
+    });
   };
 
 
-  const handleVariantprice = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = event.target;
-     console.log(name,value)
-     
+  const handleVariantprice = (event: React.ChangeEvent<HTMLInputElement |HTMLSelectElement>) => {
+    const { name, value  } = event.target;
+   
     const variantIndex = parseInt(name.slice(-1), 10);
-      console.log(Variants)
+
     if (name == `variantofferprice${variantIndex}`) {
       setVariants((prevVariants) =>
         prevVariants.map((variant, i) => (i === variantIndex ? { ...variant, variantofferprice: value } : variant))
@@ -126,21 +131,15 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
       );
     }
 
-    if (name == `variantstock${variantIndex}`) {
-      setVariants((prevVariants) =>
-        prevVariants.map((variant, i) => (i === variantIndex ? { ...variant, variantstock: value } : variant))
-      );
-    }
-
-    if (name.includes("attribute")) {
+    if(name.includes("attribute")){
       // console.log("asas")
-      let getkey = name;
-      const newKey = getkey.replace("attribute", "");
-      const variantIndex = Number(getkey.replace(/\D/g, ""));
+      let getkey=name;
+      const newKey=getkey.replace("attribute","");
+      const variantIndex= Number(getkey.replace(/\D/g, ""));
       // console.log(newKey);
       // const newKey = getkey;
       const newValue = value;
-      const newKeyfilter = newKey.replace(/[0-9]/g, '');
+      const newKeyfilter=newKey.replace(/[0-9]/g, '');
       // console.log(newKeyfilter)
       setVariants((prevVariants) =>
         prevVariants.map((variant, i) => (i === variantIndex ? { ...variant, [newKeyfilter]: value } : variant))
@@ -165,6 +164,43 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
 
   };
 
+  const addKeyValuePair = (key, value) => {
+    setfirstvariant((prevState) => ({
+      ...prevState,
+      [key]: value,
+    }));
+  };
+
+  const handlefirstvariant = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = event.target;
+
+    // console.log(name, value)
+
+
+    const previousdata = firstvariant;
+    if(name.includes("attribute")){
+      console.log("asas")
+      let getkey=name;
+      const newKey=getkey.replace("attribute","");
+      console.log(newKey);
+      // const newKey = getkey;
+      const newValue = value;
+      addKeyValuePair(newKey, newValue);
+    }else{
+      const newKey = name;
+      const newValue = value;
+      addKeyValuePair(newKey, newValue);
+    }
+    
+   
+   
+    
+
+    console.log(firstvariant)
+
+    // setProduct((prevProduct) => ({ ...prevProduct, [name]: value }));
+
+  };
 
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -197,32 +233,21 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
     }
   };
 
-  const isVariantEmpty = (objectName) => {
-    return JSON.stringify(objectName) === "{}";
-  };
+
 
 
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 
     console.log(Variants, "varassa")
-
-   
-    event.preventDefault();
-     
-    const checkvariant=isVariantEmpty(Variants[0])
-    if(checkvariant==true){
-      alert("Please fill variant detail first")
-      return;
-    }
-
-   
     
+    console.log(firstvariant,"first");
+    event.preventDefault();
 
 
-    const Variantdata = [Variants];
-    console.log(Variantdata)
-    const variants = JSON.stringify(Variants);
+     const Variantdata=[firstvariant,...Variants];
+     console.log(Variantdata)
+    const variants = JSON.stringify(Variantdata);
     const formData = new FormData();
     formData.append('name', product.name);
     formData.append('price', product.price);
@@ -236,12 +261,11 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
 
     formData.append('variants', variants);
 
-
+   
 
     for (let i = 0; i < images.length; i++) {
       formData.append('image', images[i]);
     }
-       
 
     const createproduct = productService.createproduct(formData).then(response => {
       if (response.status == 200) {
@@ -260,8 +284,6 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
   };
 
   useEffect(() => {
-
-    // console.log(selectBoxValues);
     if (typeof window !== 'undefined' && !mounted) {
       // Fetch brands from api
       const getbrands = brandService.allbrands().then(res => {
@@ -279,10 +301,7 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
 
       });
 
-      setSelectBoxValues(['']);
-      setShowvariants(true);
 
-      handleRemoveVariant(1);
       // }
 
 
@@ -408,7 +427,39 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
 
               <div className="form-group fform-group">
 
+                <div className='var-opt'>
+                  <h1 >Select Variant 1</h1>
+                  {attributes.map((attribute, index) => (
+                    <div className='var-option' key={index}>
+                      <label key={index}>{attribute.name}</label>
+                      <select className='variant-selectb'  name={`attribute${attribute.name}`} onChange={handlefirstvariant}>
+                        <option >Select Unit</option>
+                        {attribute.units.map((attributeunit, index) => (
+                          <option key={index}>
+                            {attributeunit}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  ))}
 
+                  <div className='var-option'>
+                    <label>Stock</label>
+                    <input className="form-control variant-selectb fform-group" placeholder='Enter Variant Quantity ' type="text" id={`firstvariantquantity`} name={`variantquantity`} onChange={handlefirstvariant} />
+                  </div>
+                  <div className='var-option'>
+                    <label>Offer Price</label>
+                    <input className="form-control variant-selectb fform-group" placeholder='Enter Variant Offer Price' type="text" id={`firstvariantofferprice`} name={`variantofferprice`} onChange={handlefirstvariant} />
+                  </div>
+                  <div className='var-option'>
+                    <label>Regular  Price</label>
+                    <input className="form-control variant-selectb fform-group" placeholder='Enter Variant Selling Price' type="text" id={`firstvariantsellingprice`} name={`variantsellingprice`} onChange={handlefirstvariant} />
+                  </div>
+                  <div className='var-option'>
+                    <label>Discount %</label>
+                    <input className="form-control variant-selectb fform-group" placeholder='Enter Discount Rate' type="text" id={`firstvariantdiscountprice`} name={`variantdiscountprice`} onChange={handlefirstvariant} />
+                  </div>
+                </div>
 
 
                 {showvariants && (
@@ -416,16 +467,14 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
                     {selectBoxValues.map((value, index) => (
 
                       <div key={index} className='var-opt'>
-                        <h1>Select Variant {index + 1}</h1>
-                        {index !=0 &&(
+                        <h1>Select Variant {index + 2}</h1>
                         <button
-                        className="btn btn-danger sub-butn"
-                        type="button"
-                        onClick={() => handleRemoveVariant(index)}
-                      >
-                        Remove Variant
-                      </button> 
-                        )}
+                          className="btn btn-danger sub-butn"
+                          type="button"
+                          onClick={() => handleRemoveVariant(index)}
+                        >
+                          Remove Variant
+                        </button>
                         {attributes.map((attribute, indexs) => (
                           <div className='var-option' key={indexs}>
                             <label key={indexs}>{attribute.name}</label>
@@ -443,7 +492,7 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
 
                         <div className='var-option'>
                           <label>Stock</label>
-                          <input className="form-control variant-selectb fform-group" placeholder='Enter Variant Quantity ' type="text" id={`variantstock${index}`} name={`variantstock${index}`} onChange={handleVariantprice} />
+                          <input className="form-control variant-selectb fform-group" placeholder='Enter Variant Quantity ' type="text" id={`variantquantity${index}`} name={`variantquantity${index}`} onChange={handleVariantprice} />
                         </div>
                         <div className='var-option'>
                           <label>Offer Price</label>
@@ -474,9 +523,9 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
             </form>
           </div>
         </Card.Body>
-      </Card >
+      </Card>
 
-    </AdminLayout >
+    </AdminLayout>
   );
 };
 

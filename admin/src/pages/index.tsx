@@ -22,18 +22,22 @@ const Home: NextPage = () => {
     };
     const fetchcategories = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}category/count`); 
-        console.log(response.data)
-        setTotalcategories(response.data.totalcategories); 
+        // const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}category/count`); 
+        // console.log(response.data)
+        // setTotalcategories(response.data.totalcategories); 
+      
+        setTotalcategories(8); 
       } catch (error) {
         console.error('Error fetching products:', error);
       }
     };
     const fetchbrands = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}brand/count`); 
-        console.log(response.data)
-        setTotalbrands(response.data.totalbrands); 
+        // const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}brand/count`); 
+        // console.log(response.data)
+        // setTotalbrands(response.data.totalbrands); 
+      
+        setTotalbrands(9); 
       } catch (error) {
         console.error('Error fetching products:', error);
       }

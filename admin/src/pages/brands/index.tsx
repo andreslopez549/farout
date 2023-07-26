@@ -21,9 +21,7 @@ const ProductsPage: React.FC<ProductsProps> = ({ products }) => {
   return (
     <AdminLayout>
       <Card>
-        {/* <Card.Header>Products Listing  <Link legacyBehavior href={`/createproduct`}>
-            <a>Create Product</a>
-          </Link> </Card.Header> */}
+     
           <Card.Header>Products Listing <Link legacyBehavior href={`/createbrand`}>
           <button  className="btn btn-secondary ml-3 cr-new-butn">Create New Brand</button>
           </Link></Card.Header>
@@ -33,7 +31,7 @@ const ProductsPage: React.FC<ProductsProps> = ({ products }) => {
         <tr>
          
           <th>Name</th>
-         
+          <th>Edit</th>
           
           <th></th>
         </tr>
@@ -45,7 +43,9 @@ const ProductsPage: React.FC<ProductsProps> = ({ products }) => {
 
          <td>{product.name}</td>
        
-         
+         <td><Link legacyBehavior href={`/editbrand/${product._id}`}>
+          <button  className="btn btn-secondary ml-3 cr-new-butn">Edit</button>
+          </Link></td>
          
         
           <td></td>

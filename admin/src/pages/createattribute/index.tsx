@@ -14,7 +14,7 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
   const router = useRouter();
   const [attribute, setAttribute] = useState({
     name: '',
-    discription: ''
+    discription: '',
   });
 
   const [tags, setTags] = useState<string[]>([]);
@@ -27,11 +27,9 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
     const { name, value } = event.target;
 
     // If the input name is 'unit', add the value to the 'unit' state
-    if (name === 'unit') {
-      setAttribute((prevProduct) => ({ ...prevProduct, [name]: [...prevProduct.unit, value] }));
-    } else {
+    
       setAttribute((prevProduct) => ({ ...prevProduct, [name]: value }));
-    }
+    
   };
 
   const addTags = (event: KeyboardEvent<HTMLInputElement>) => {

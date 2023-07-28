@@ -3,17 +3,14 @@ import { AdminLayout } from '@layout'
 import { Card ,Table } from 'react-bootstrap'
 import { GetStaticProps } from 'next';
 import { Product } from '../../types';
+
 import {attributeService} from '../../_services';
 import { useState  } from 'react';
 
 
 
 interface ProductsProps {
-  products: {
-    _id: number;
-    name: string;
-    description:string;
-  };
+  products:Product[];
 }
 
 
@@ -40,7 +37,7 @@ const ProductsPage: React.FC<ProductsProps> = ({ products }) => {
         </tr>
       </thead>
       <tbody>
-       
+        
         {products.map((product) => (
            <tr key={product._id}>
 

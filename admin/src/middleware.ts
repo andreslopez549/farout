@@ -16,7 +16,7 @@ const redirectIfAuthenticated: Middleware = (request) => {
 
 const authenticated: Middleware = (request) => {
   const authSession = request.cookies.get('auth')?.value
-
+    console.log(authSession);
   if (!authSession) {
     const response = NextResponse.redirect(new URL('/login', request.url))
     response.cookies.set({

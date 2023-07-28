@@ -4,7 +4,7 @@ import { Card ,Table } from 'react-bootstrap'
 import { GetStaticProps } from 'next';
 import { Product } from '../../types';
 import {attributeService} from '../../_services';
-import { useState } from 'react';
+import { useState  } from 'react';
 
 
 
@@ -25,7 +25,7 @@ const ProductsPage: React.FC<ProductsProps> = ({ products }) => {
         {/* <Card.Header>Products Listing  <Link legacyBehavior href={`/createproduct`}>
             <a>Create Product</a>
           </Link> </Card.Header> */}
-          <Card.Header>Products Listing <Link legacyBehavior href={`/createattribute`}>
+          <Card.Header>Attributes Listing <Link legacyBehavior href={`/createattribute`}>
           <button  className="btn btn-secondary ml-3 cr-new-butn">Create New Attribute</button>
           </Link></Card.Header>
         <Card.Body>
@@ -48,7 +48,7 @@ const ProductsPage: React.FC<ProductsProps> = ({ products }) => {
          
          
         <td>{product.description}</td>
-          <td><Link legacyBehavior href={``}>
+          <td><Link legacyBehavior href={`/editattribute/${product._id}`}>
           <button  className="btn btn-secondary ml-3 cr-new-butn">Edit</button>
           </Link></td>
           

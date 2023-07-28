@@ -82,6 +82,9 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
 
   };
 
+  
+
+
   const handleRemoveVariant = (index) => {
     console.log(selectBoxValues,"s")
     setVariants((prevVariants) => {
@@ -220,8 +223,7 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
     
 
 
-    const Variantdata = [Variants];
-    console.log(Variantdata)
+  
     const variants = JSON.stringify(Variants);
     const formData = new FormData();
     formData.append('name', product.name);
@@ -248,7 +250,7 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
         setShowSuccessModal(true);
         // Hide the error modal if it was open
         setShowErrorModal(false);
-        router.push('/products');
+        // router.push('/products');
       } else {
         setShowErrorModal(true);
         // Hide the success modal if it was open
@@ -291,7 +293,11 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
     }
   }, [mounted]);
 
-
+  const close =()=>{
+    setShowSuccessModal(false);
+    setShowErrorModal(false)
+    router.push('/products');
+  }
 
 
   return (
@@ -304,7 +310,7 @@ const NewProductPage: NextPage<NewProductPageProps> = () => {
           Product created successfully!
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowSuccessModal(false)}>
+          <Button variant="secondary" onClick={close}>
             Close
           </Button>
         </Modal.Footer>

@@ -105,3 +105,38 @@ form.edit-cat-frm select {
     padding: 6px;
 }
 
+.pagination{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 4px;
+    margin: 10px;
+    padding: 11px;
+}
+
+.pagination button {
+    border-radius: 5px;
+}
+
+button.active {
+    background: beige;
+}
+
+.delete-col{
+    display: flex;
+    justify-content: center;
+}
+
+.login-form {
+    margin-left: 30%;
+    padding: 57px;
+}
+
+.headingfar{
+    display: flex;
+    justify-content: center;
+}
+
+body{
+    background: #cbcbd3;
+}

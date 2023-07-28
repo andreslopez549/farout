@@ -51,7 +51,7 @@ interface Variant {
 
 const EditProductPage: NextPage<EditProductPageProps> = (productdata) => {
   const router = useRouter();
-  const { productId } = router.query;
+  const productId = router.query.id;
 
 
   const [product, setProduct] = useState({
@@ -68,6 +68,7 @@ const EditProductPage: NextPage<EditProductPageProps> = (productdata) => {
   });
 
   const producttype = ["Men", "Women", "Kids"];
+  const delay = 5;
   const [mounted, setMounted] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
@@ -203,11 +204,25 @@ const EditProductPage: NextPage<EditProductPageProps> = (productdata) => {
   };
 
 
-  const setinitialvalue=()=>{
-    console.log(Variants[0]["variantdiscount"],"variant")
+  const setinitialvalue = async () => {
+
+
+    console.log(Variants, "variants")
+
+    Variants.forEach(element => {
+
+      console.log("in loop")
+      setSelectBoxValues((prevValues) => [...prevValues, '']);
+      setShowvariants(true);
+    })
+
+
+
+
+    console.log("out loop")
   }
 
-   useEffect(() => {
+  useEffect(() => {
 
 
     const getbrands = brandService.allbrands().then(res => {
@@ -248,23 +263,31 @@ const EditProductPage: NextPage<EditProductPageProps> = (productdata) => {
       // console.log(product)
     }
 
-    setinitialvalue()
+
     if (typeof window !== 'undefined' && !mounted) {
       // console.log(productdetail.variant)
       const editvariants = JSON.parse(productdetail.variants);
 
       setVariants(editvariants);
-      
-      
-       
-      setSelectBoxValues(['']);
-      setShowvariants(true);
 
       setMounted(true);
-      
-        console.log(selectBoxValues);
-     
+
+      console.log(selectBoxValues);
+
     }
+
+    let timer4 = setTimeout(() => setinitialvalue(), delay * 1000);
+    // let timer1 = setTimeout(() => setSelectBoxValues((prevValues) => [...prevValues, '']), delay * 1000);
+    // let timer2 = setTimeout(() =>
+    //   setShowvariants(true), delay * 1500);
+    let timer3 = setTimeout(() =>
+      console.log(Variants, "variants"), delay * 1500);
+
+    return () => {
+
+      clearTimeout(timer4);
+      clearTimeout(timer3);
+    };
   }, [mounted]);
 
   // Rest of the event handlers (handleInputChange, handleImageChange, etc.)
@@ -272,32 +295,77 @@ const EditProductPage: NextPage<EditProductPageProps> = (productdata) => {
   // Modify the handleSubmit function to handle product update
   const handleUpdate = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    console.log(productId);
+    // return;
+    const variants = JSON.stringify(Variants);
     const formData = new FormData();
     formData.append('name', product.name);
     formData.append('price', product.price);
-    formData.append('inventory', product.inventory);
     formData.append('brand', product.brand);
     formData.append('discription', product.discription);
     formData.append('sku', product.sku);
     formData.append('type', product.type);
     formData.append('categories', product.category);
 
-    // ... Append other product data to the formData, such as variants and images
 
-    // Example: const updateProduct = productService.updateProduct(productId, formData);
-    // Handle success and error modals accordingly
+    formData.append('variants', variants);
+
+
+
+    for (let i = 0; i < images.length; i++) {
+      formData.append('image', images[i]);
+    }
+
+    
+    const createproduct = productService.editproducts(productId, formData).then(response => {
+      if (response.status == 200) {
+        setShowSuccessModal(true);
+        // Hide the error modal if it was open
+        setShowErrorModal(false);
+        // router.push('/products');
+      } else {
+        setShowErrorModal(true);
+        // Hide the success modal if it was open
+        setShowSuccessModal(false);
+      }
+    });
   };
+
+  const close =()=>{
+    setShowSuccessModal(false);
+    setShowErrorModal(false)
+    router.push('/products');
+  }
 
   return (
     <AdminLayout>
-      {/* Same modal components for success and error as in NewProductPage */}
+     
       <Modal show={showSuccessModal} onHide={() => setShowSuccessModal(false)}>
-        {/* ... Modal content */}
+        <Modal.Header closeButton>
+          <Modal.Title>Success</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Product Updated successfully!
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={close}>
+            Close
+          </Button>
+        </Modal.Footer>
       </Modal>
 
       <Modal show={showErrorModal} onHide={() => setShowErrorModal(false)}>
-        {/* ... Modal content */}
+      <Modal.Header closeButton>
+          <Modal.Title>Error</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Error on Updating the product!
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowErrorModal(false)}>
+            Close
+          </Button>
+        </Modal.Footer>
       </Modal>
 
       <Card>
@@ -408,7 +476,7 @@ const EditProductPage: NextPage<EditProductPageProps> = (productdata) => {
                         {attributes.map((attribute, indexs) => (
                           <div className='var-option' key={indexs}>
                             <label key={indexs}>{attribute.name}</label>
-                            <select className='variant-selectb' value={Variants[0][`attribute${attribute.name}${index}`] || ''} name={`attribute${attribute.name}${index}`} onChange={handleVariant}>
+                            <select className='variant-selectb' value={Variants[`${index}` || ''][`${attribute.name}`] || ''} name={`attribute${attribute.name}${index}`} onChange={handleVariant}>
                               <option >Select Unit</option>
                               {attribute.units.map((attributeunit, index) => (
                                 <option key={index}>
@@ -422,19 +490,19 @@ const EditProductPage: NextPage<EditProductPageProps> = (productdata) => {
 
                         <div className='var-option'>
                           <label>Stock</label>
-                          <input className="form-control variant-selectb fform-group" placeholder='Enter Variant Stock availabel ' type="text" id={`variantstock${index}`} name={`variantstock${index}`} onChange={handleVariant} />
+                          <input className="form-control variant-selectb fform-group" placeholder='Enter Variant Stock availabel ' type="text" id={`variantstock${index}`} name={`variantstock${index}`} value={Variants[`${index}` || ''][`variantstock`] || ''} onChange={handleVariant} />
                         </div>
                         <div className='var-option'>
                           <label>Offer Price</label>
-                          <input className="form-control variant-selectb fform-group" placeholder='Enter Variant Offer Price' type="text" id={`variantofferprice${index}`} name={`variantofferprice${index}`} onChange={handleVariant} />
+                          <input className="form-control variant-selectb fform-group" placeholder='Enter Variant Offer Price' type="text" id={`variantofferprice${index}`} value={Variants[`${index}` || '']["variantofferprice"] || ''} name={`variantofferprice${index}`} onChange={handleVariant} />
                         </div>
                         <div className='var-option'>
                           <label>Regular Price</label>
-                          <input className="form-control variant-selectb fform-group" placeholder='Enter Variant Selling Price' type="text" id={`variantsellingprice${index}`} name={`variantsellingprice${index}`} onChange={handleVariant} />
+                          <input className="form-control variant-selectb fform-group" placeholder='Enter Variant Selling Price' type="text" id={`variantsellingprice${index}`} value={Variants[`${index}` || '']["variantsellingprice"] || ''} name={`variantsellingprice${index}`} onChange={handleVariant} />
                         </div>
                         <div className='var-option'>
                           <label>Discount %</label>
-                          <input className="form-control variant-selectb fform-group" placeholder='Enter Discount Rate' type="text" id={`variantdiscountprice${index}`} name={`variantdiscount${index}`} onChange={handleVariant} />
+                          <input className="form-control variant-selectb fform-group" placeholder='Enter Discount Rate' type="text" id={`variantdiscountprice${index}`} value={Variants[`${index}` || '']["variantdiscount"] || ''} name={`variantdiscount${index}`} onChange={handleVariant} />
                         </div>
                       </div>
                     ))}

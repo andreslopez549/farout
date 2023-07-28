@@ -42,14 +42,12 @@ async function getproducts(id) {
 }
 
 async function editproducts(id:any,obj: any) {
-
-
-  const result = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}product/edit/${obj._id}`, {
+   
+     console.log(obj,"objectss");
+     console.log(id,"id");
+  const result = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}product/edit/${id}`, {
     method: 'put',
-    headers: {
-      'Content-Type': 'application/JSON'
-    },
-    body: JSON.stringify(obj)
+    body: obj
   }).then(res => {
 
     if (res.status == 200) {
@@ -69,12 +67,36 @@ async function editproducts(id:any,obj: any) {
 
 }
 
+async function deleteproduct(id) {
+
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}product/${id}`,{
+    method: 'delete',
+  }).then(res => {
+
+    if (res.status == 200) {
+
+      return {"status":true};
+
+    } 
+    else {
+
+      return {"status":false,
+               "error":res};
+    }
+
+  });
+
+  return response;
+
+}
+
 
 
 export const productService = {
   allproducts,
   createproduct,
   getproducts,
-  editproducts
+  editproducts,
+  deleteproduct
 
 };

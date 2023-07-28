@@ -33,7 +33,7 @@ const CategoryEditPage: React.FC<CategoryEditProps> = ({ brand }) => {
       });
       console.log(brand)
     }
-  }, [brand]);
+  }, [brand]); 
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = event.target;

@@ -15,7 +15,7 @@ async function createcategory(obj: any) {
     "type": obj.get("type")
   };
 
-  fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}category/create`, {
+ const create= fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}category/create`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/JSON'
@@ -34,6 +34,8 @@ async function createcategory(obj: any) {
     }
 
   });
+
+  return create;
 
 
 }
@@ -74,12 +76,37 @@ async function editcategory(obj: any) {
 
 }
 
+async function deletecategory(id) {
+
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}category/${id}`,{
+    method: 'delete',
+  }).then(res => {
+
+    if (res.status == 200) {
+
+      return {"status":true};
+
+    } 
+    else {
+
+      return {"status":false,
+               "error":res};
+    }
+
+  });
+
+  return response;
+
+}
+
+
 
 
 export const categoryService = {
   allcategories,
   createcategory,
   getcategories,
-  editcategory
+  editcategory,
+  deletecategory
 
 };

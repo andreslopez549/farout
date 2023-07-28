@@ -1,12 +1,16 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors');
-const productRoutes=require('./routes/products');
-const categoryRoutes=require('./routes/category');
-const brandRoutes=require('./routes/brand');
+const productRoutes = require('./routes/products');
+const authRoutes = require('./routes/auth');
+const categoryRoutes = require('./routes/category');
+const attributesRoutes = require('./routes/attributes');
+const brandRoutes = require('./routes/brand');
 const bodyParser = require('body-parser');
 const path = require('path');
-
+const passport = require('passport');
+const strategy = require('./config/jwt');
+const checkauth = require('./middleware/checkauth')
 
 const app = express();
 
@@ -32,9 +36,14 @@ connectDB();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+passport.use("strategy", strategy);
+
+app.use('/auth', authRoutes);
 app.use('/product',  productRoutes);
 app.use('/category',  categoryRoutes);
 app.use('/brand',  brandRoutes);
+app.use('/attribute',  attributesRoutes);
+
 
 module.exports = app;
 

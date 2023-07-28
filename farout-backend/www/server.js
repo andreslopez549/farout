@@ -73,8 +73,12 @@ function normalizePort(val) {
     const addr = server.address();
     const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
     debug(`Listening on ${bind}`);
+    console.log(`Example app listening on address ${port}`);
   }
   
+  // app.listen(port, () => {
+  //   console.log(`Example app listening on port ${port}`)
+  // })
   process.on('uncaughtException', uncaughtException => {
     logger.error(
       'Uncaught Exception at: %s - message: %s',

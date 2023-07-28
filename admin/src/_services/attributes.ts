@@ -3,18 +3,53 @@
 async function allattributes() {
 
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}attribute/all`);
-  const productfilter = await response.json();
-  // console.log(productfilter, "aaaa")
-  return productfilter.data;
+  const attributefilter = await response.json();
+  // console.log(attributefilter, "aaaa")
+  return attributefilter.data;
 
 }
 
 async function createattribute(obj: any) {
 
- 
 
-  fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}attribute/create`, {
+
+  const create = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}attribute/create`, {
     method: 'post',
+    headers: {
+      'Content-Type': 'application/JSON'
+    },
+    body: JSON.stringify(obj)
+  }).then(res => {
+
+    if (res.status == 200) {
+
+      return { "status": true };
+
+    }
+    else {
+      // alert(res.statusText)
+      return { "status": false };
+    }
+
+  });
+
+  return create;
+
+
+}
+
+async function getattribute(id) {
+
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}attribute/show/${id}`);
+  const attributefilter = await response.json();
+  return attributefilter.data;
+
+}
+
+async function editattribute(obj: any, id: any) {
+
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}attribute/edit/${id}`, {
+    method: 'put',
     headers: {
       'Content-Type': 'application/JSON'
     },
@@ -33,12 +68,14 @@ async function createattribute(obj: any) {
 
   });
 
+     return response;
 
 }
 
 
-
 export const attributeService = {
   allattributes,
-  createattribute
+  createattribute,
+  getattribute,
+  editattribute
 };

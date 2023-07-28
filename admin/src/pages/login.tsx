@@ -11,9 +11,15 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 import { deleteCookie, getCookie } from 'cookies-next'
 
+
 const Login: NextPage = () => {
   const router = useRouter()
-  const [submitting, setSubmitting] = useState(false)
+  const [submitting, setSubmitting] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+
+
 
   const getRedirect = () => {
     const redirect = getCookie('redirect')
@@ -29,6 +35,7 @@ const Login: NextPage = () => {
     e.stopPropagation()
     e.preventDefault()
 
+   
     setSubmitting(true)
 
     const res = await axios.post('api/mock/login')
@@ -39,10 +46,15 @@ const Login: NextPage = () => {
   }
 
   return (
-    <div className="bg-light min-vh-100 d-flex flex-row align-items-center dark:bg-transparent">
+    <div className="login-form">
       <Container>
-        <Row className="justify-content-center align-items-center px-3">
-          <Col lg={8}>
+        <Row className="">
+          <Col lg={15}>
+            <Row>
+              <Col md={7} className="bg-white  p-2 headingfar">
+                <h1>Farout </h1>
+              </Col>
+            </Row>
             <Row>
               <Col md={7} className="bg-white border p-5">
                 <div className="">
@@ -64,6 +76,9 @@ const Login: NextPage = () => {
                         placeholder="Username"
                         aria-label="Username"
                         defaultValue="Username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+
                       />
                     </InputGroup>
 
@@ -82,6 +97,8 @@ const Login: NextPage = () => {
                         placeholder="Password"
                         aria-label="Password"
                         defaultValue="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                     </InputGroup>
 
@@ -90,7 +107,7 @@ const Login: NextPage = () => {
                         <Button className="px-4" variant="primary" type="submit" disabled={submitting}>Login</Button>
                       </Col>
                       <Col xs={6} className="text-end">
-                        <Button className="px-0" variant="link" type="submit">
+                        <Button className="px-0" variant="link" type="button">
                           Forgot
                           password?
                         </Button>
@@ -99,7 +116,7 @@ const Login: NextPage = () => {
                   </form>
                 </div>
               </Col>
-              <Col
+              {/* <Col
                 md={5}
                 className="bg-primary text-white d-flex align-items-center justify-content-center p-5"
               >
@@ -115,7 +132,7 @@ const Login: NextPage = () => {
                     </button>
                   </Link>
                 </div>
-              </Col>
+              </Col> */}
             </Row>
           </Col>
         </Row>

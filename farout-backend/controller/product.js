@@ -1,48 +1,30 @@
 const express = require('express');
 const productmodel = require('../models/product');
-const fs =require('fs');
+const fs = require('fs');
 const path = require('path');
-const multer = require('multer');
 
 
 
-const create = async  (req, res, next) => {
-  
-   
+const create = async (req, res, next) => {
+    const product_images = [];
 
     try {
-          console.log(req.body)
-        const { name, imagelink, categories,price,brand } = req.body;
+        console.log(req.body)
+        const { name, imagelink, categories, price, brand } = req.body;
         let product = await productmodel.findOne({ name });
-       
-        if(req.file){
-
-      
-
-           const extension=  path.extname(req.file.originalname)
-          
-
-            const uploadedFilePath = req.file.path;
-            var dir = __dirname + `/uploads/images}`;
-             
-            filename=req.file.filename+extension;
-           
-            const destinationFilePath = path.join(__dirname,`../uploads/images`, filename);
-              
-          
-            
-
-            fs.rename(uploadedFilePath, destinationFilePath, (error) => {
-                if (error) {
-                  console.error(error);
-                 
-                }
-                console.log(destinationFilePath,'get files success');
-              
-              });
-              req.body.images=filename
+        if (product) {
+            return res
+                .status(400)
+                .json({ errors: [{ msg: 'Product already exists' }] });
         }
-           
+
+        if (req.files) {
+            req.files.forEach(file => {
+                product_images.push(file.filename);
+            });
+            req.body.images = product_images
+        }
+
 
 
         product = new productmodel(
@@ -50,9 +32,6 @@ const create = async  (req, res, next) => {
         );
 
         await product.save();
-      
-        console.log(product._id)
-          
         return res.json({ message: "Product Created Successfully", data: product });
 
     }
@@ -64,38 +43,85 @@ const create = async  (req, res, next) => {
 };
 
 const getById = async (req, res, next) => {
-    const id = req.params.objectId;
- 
-    const product = await productmodel.findOne({ _id:id });
 
-        if (!product) {
+    const id = req.params.objectId;
+
+    const product = await productmodel.findOne({ _id: id });
+
+    if (!product) {
         return res.status(404).send('Product not found')
-      }
-    res.json({message: "Product Fetched Successfully", product: product})
+    }
+    res.json({ message: "Product Fetched Successfully", product: product })
 
 }
 
 const getall = async (req, res, next) => {
-    const product = await productmodel.find({});
-    res.json({message: "All Product Fetched Successfully", product: product})
+    const product = await productmodel.find({ "status": true }).sort({age:-1});
+    res.json({ message: "All Product Fetched Successfully", product: product })
 }
 
 const getcount = async (req, res, next) => {
-    const product = await productmodel.find({});
-    res.json({totalProducts: product.length})
+    const product = await productmodel.find({ "status": true });
+    res.json({ totalProducts: product.length })
 }
 
 const getmensproduct = async (req, res, next) => {
-    const product = await productmodel.find({"type":"Men"});
-    res.json({message: "All Product Fetched Successfully", product: product})
+    const product = await productmodel.find({ "type": "Men", "status": true });
+    res.json({ message: "All Product Fetched Successfully", product: product })
 }
+
 const getwomensproduct = async (req, res, next) => {
-    const product = await productmodel.find({"type":"Women"});
-    res.json({message: "All Product Fetched Successfully", product: product})
+    const product = await productmodel.find({ "type": "Women" });
+    res.json({ message: "All Product Fetched Successfully", product: product })
 }
+
 const getkidsproduct = async (req, res, next) => {
-    const product = await productmodel.find({"type":"Kids"});
-    res.json({message: "All Product Fetched Successfully", product: product})
+    const product = await productmodel.find({ "type": "Kids" });
+    res.json({ message: "All Product Fetched Successfully", product: product })
+}
+
+const edit = async (req, res, next) => {
+    try {
+
+        // console.log(req.files,"iddd");
+        if (req.files.length > 0) {
+            const product_images = [];
+            req.files.forEach(file => {
+                product_images.push(file.filename);
+            });
+            req.body.images = product_images
+        }
+        const updatedResult =
+            await productmodel.findByIdAndUpdate(
+                { _id: req.params.objectId },
+                req.body,
+                {
+                    new: true
+                }
+            );
+        // console.log(updatedResult);
+
+        res.json({ message: "Product Updated Successfully", product: updatedResult })
+
+    }
+    catch (err) {
+
+        console.error(err.message);
+        return res.status(500).send('Server error');
+    }
+
+};
+
+const deleteproduct = async (req, res) => {
+     
+    console.log(req.params.objectId,"idd")
+
+    await productmodel.findByIdAndUpdate(
+        { _id: req.params.objectId },
+        { "status": false }
+    );
+
+    res.json({ message: "Product deleted Successfully" })
 }
 
 
@@ -107,5 +133,7 @@ module.exports = {
     getcount,
     getmensproduct,
     getwomensproduct,
-    getkidsproduct
+    getkidsproduct,
+    edit,
+    deleteproduct
 }

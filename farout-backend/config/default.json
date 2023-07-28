@@ -1,4 +1,4 @@
 {
-  "mongoURI": "mongodb://localhost:27017/faraut",
+  "mongoURI": "mongodb+srv://test1234:test123@cluster0.jsgnndc.mongodb.net/testdata",
   "jwtSecret": "twm"
 }

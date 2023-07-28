@@ -74,6 +74,29 @@ async function editbrand(obj: any) {
 
 }
 
+async function deletebrand(id) {
+
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}brand/${id}`,{
+    method: 'delete',
+  }).then(res => {
+
+    if (res.status == 200) {
+
+      return {"status":true};
+
+    } 
+    else {
+
+      return {"status":false,
+               "error":res};
+    }
+
+  });
+
+  return response;
+
+}
+
 
 
 
@@ -81,6 +104,7 @@ export const brandService = {
   allbrands,
   createbrand,
   getbrands,
-  editbrand
+  editbrand,
+  deletebrand
 
 };
